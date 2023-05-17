@@ -2,6 +2,7 @@ package flixbase.flix.entity;
 
 import java.util.List;
 
+import flixbase.flix.dto.GenreDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Genre {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name="name")
     private String name;
@@ -34,5 +35,13 @@ public class Genre {
 
     @ManyToMany(mappedBy="favoriteGenres")
     private List<User> users;
+
+    public Genre(GenreDto genreDto) {
+        if(genreDto.getName() != null) {
+            this.name = genreDto.getName();
+        }
+    }
+    
+   
 
 }

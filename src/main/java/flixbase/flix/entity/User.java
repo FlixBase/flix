@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import flixbase.flix.dto.UserDto;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Column;
@@ -30,10 +31,9 @@ import lombok.Setter;
 @Table(name="users")
 public class User {
     
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name="username", nullable=false, unique=true) 
     private String username;
@@ -51,8 +51,32 @@ public class User {
     @OneToMany(mappedBy="user")
     @JsonManagedReference
     private List<View> views = new ArrayList<>();
+    
 
+    public void addGenre(Genre genre) {
+        favoriteGenres.add(genre);
+    }
 
+    public void removeGenre(Genre genre) {
+        favoriteGenres.remove(genre);
+    }
+
+    public void addView(View view) {
+        views.add(view);
+    }
+
+    public void removeView(View view) {
+        views.remove(view);
+    }
+
+    public User(UserDto userDto) {
+        if(userDto.getEmail() != null) {
+            this.email = userDto.getEmail();
+        }
+        if(userDto.getUsername() != null) {
+            this.username = userDto.getUsername();
+        }
+    }
 
     
 }

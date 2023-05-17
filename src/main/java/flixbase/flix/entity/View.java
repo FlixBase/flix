@@ -2,6 +2,7 @@ package flixbase.flix.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import flixbase.flix.dto.ViewDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,16 +26,16 @@ public class View {
         
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name="review", columnDefinition="text")
     private String review;
 
     @Column(name="rating")
-    private int rating;
+    private Integer rating;
 
-    @Column(name="favorite")
-    private boolean favorite;
+    @Column(name="favorite", columnDefinition = "boolean default false")
+    private Boolean favorite;
 
     @ManyToOne
     @JsonBackReference  
@@ -47,6 +48,22 @@ public class View {
     private Movie movie;
 
 
-
+    public View(ViewDto viewDto) {
+      if(viewDto.getReview() != null) {
+        this.review = viewDto.getReview();
+      }
+      if(viewDto.getRating() != null) {
+        this.rating = viewDto.getRating();
+      }
+      if(viewDto.getFavorite() != null) {
+        this.favorite = viewDto.getFavorite();
+      }
+      if(viewDto.getMovie() != null) {
+        // map movieDto to movie
+      }
+      if(viewDto.getUser() != null) {
+        // map userDto to user
+      }
+    }
 
   }
