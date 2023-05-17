@@ -38,7 +38,6 @@ public class MovieDto {
     private List<ViewDto> views;
 
 
-
     public MovieDto(Movie movie) {
         if(movie.getId() != null) {
             this.id = movie.getId();

@@ -25,7 +25,6 @@ public class GenreDto {
     private List<UserDto> users;
 
 
-
     public GenreDto(Genre genre) {
         
         if(genre.getId() != null) {

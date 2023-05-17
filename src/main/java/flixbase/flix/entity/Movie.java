@@ -72,7 +72,6 @@ public class Movie {
     private List<View> views = new ArrayList<>();
 
 
-
     public void addGenre(Genre genre) {
         genres.add(genre);
     }

@@ -27,7 +27,6 @@ public class UserDto {
     private List<ViewDto> views;
     
 
-
     public UserDto(User user) {
         if(user.getId() != null) {
             this.id = user.getId();

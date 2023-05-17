@@ -47,7 +47,8 @@ public class View {
     @JoinColumn(name="movie_id")
     private Movie movie;
 
-
+    
+    // not including user and movie as that need to be handled in service layer
     public View(ViewDto viewDto) {
       if(viewDto.getReview() != null) {
         this.review = viewDto.getReview();

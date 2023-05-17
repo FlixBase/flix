@@ -40,6 +40,7 @@ public class Genre {
     @JsonBackReference
     private List<User> users;
 
+    
     public Genre(GenreDto genreDto) {
         if(genreDto.getName() != null) {
             this.name = genreDto.getName();

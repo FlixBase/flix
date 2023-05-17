@@ -25,7 +25,6 @@ public class ViewDto {
     private MovieDto movie;
 
 
-
     public ViewDto(View view) {
         if(view.getId() != null) {
             this.id = view.getId();
