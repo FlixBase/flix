@@ -42,6 +42,7 @@ public class User {
     private String email;
 
     @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JsonManagedReference
     @JoinTable(
         name="user_genre",
         joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},

@@ -60,6 +60,7 @@ public class Movie {
     private String tags;
 
     @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JsonManagedReference
     @JoinTable(
         name="movie_genre",
         joinColumns={@JoinColumn(name="movie_id", referencedColumnName="id")},
@@ -110,22 +111,6 @@ public class Movie {
         if(movieDto.getTags() != null) {
             this.tags = movieDto.getTags();
         }
-
     }
 
-
-    // public MovieDto mapToDto() {
-    //     MovieDto dto = new MovieDto();
-    //     dto.setId(id);
-    //     dto.setTitle(title);
-    //     dto.setDescription(description);
-    //     dto.setPosterUrl(posterUrl);
-    //     dto.setYear(year);
-    //     dto.setFilmRating(filmRating);
-    //     dto.setActors(actors);
-    //     dto.setTags(tags);
-    //     dto.setViews(views);
-    //     dto.setGenres(genres);
-    //     return dto;
-    // }
 }

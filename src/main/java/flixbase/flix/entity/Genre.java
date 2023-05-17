@@ -2,6 +2,8 @@ package flixbase.flix.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import flixbase.flix.dto.GenreDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,9 +33,11 @@ public class Genre {
     private String name;
 
     @ManyToMany(mappedBy="genres")
+    @JsonBackReference
     private List<Movie> movies;
 
     @ManyToMany(mappedBy="favoriteGenres")
+    @JsonBackReference
     private List<User> users;
 
     public Genre(GenreDto genreDto) {
@@ -41,7 +45,5 @@ public class Genre {
             this.name = genreDto.getName();
         }
     }
-    
-   
 
 }

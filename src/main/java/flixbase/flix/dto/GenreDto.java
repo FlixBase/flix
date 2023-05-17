@@ -1,6 +1,7 @@
 package flixbase.flix.dto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import flixbase.flix.entity.Genre;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class GenreDto {
     private List<UserDto> users;
 
 
-    
+
     public GenreDto(Genre genre) {
         
         if(genre.getId() != null) {
@@ -34,10 +35,10 @@ public class GenreDto {
             this.name = genre.getName();
         }
         if(genre.getUsers() != null) {
-            // map users to userDtos
+            this.users = genre.getUsers().stream().map(user -> new UserDto(user)).collect(Collectors.toList());
         }
         if(genre.getMovies() != null) {
-            // map movie to movieDtos
+            this.movies = genre.getMovies().stream().map(movie -> new MovieDto(movie)).collect(Collectors.toList());
         }
     }
 

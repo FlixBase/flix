@@ -40,10 +40,10 @@ public class ViewDto {
             this.favorite = view.getFavorite();
         }
         if(view.getMovie() != null) {
-            // map movie to movieDto
+            this.movie = new MovieDto(view.getMovie());
         }
         if(view.getUser() != null) {
-            // map user to userDto
+            this.user = new UserDto(view.getUser());
         }
 
     }

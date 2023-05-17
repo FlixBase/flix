@@ -58,12 +58,6 @@ public class View {
       if(viewDto.getFavorite() != null) {
         this.favorite = viewDto.getFavorite();
       }
-      if(viewDto.getMovie() != null) {
-        // map movieDto to movie
-      }
-      if(viewDto.getUser() != null) {
-        // map userDto to user
-      }
     }
 
   }

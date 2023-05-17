@@ -1,6 +1,7 @@
 package flixbase.flix.dto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import flixbase.flix.entity.User;
 
@@ -38,10 +39,10 @@ public class UserDto {
             this.email = user.getEmail();
         }
         if(user.getFavoriteGenres() != null) {
-            // map genres to genreDtos
+            this.favoriteGenres = user.getFavoriteGenres().stream().map(genre -> new GenreDto(genre)).collect(Collectors.toList());
         }
         if(user.getViews() != null) {
-            // map views to viewDtos
+            this.views = user.getViews().stream().map(view -> new ViewDto(view)).collect(Collectors.toList());
         }
     }
 

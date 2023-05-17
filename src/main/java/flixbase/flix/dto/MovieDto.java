@@ -2,7 +2,7 @@ package flixbase.flix.dto;
 
 
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 import flixbase.flix.entity.FilmRating;
 import flixbase.flix.entity.Movie;
@@ -65,10 +65,10 @@ public class MovieDto {
             this.tags = movie.getTags();
         }
         if(movie.getGenres() != null) {
-            // map genres to genreDtos
+            this.genres = movie.getGenres().stream().map(genre -> new GenreDto(genre)).collect(Collectors.toList());
         }
         if(movie.getViews() != null) {
-            // map views to viewDtos
+            this.views = movie.getViews().stream().map(view -> new ViewDto(view)).collect(Collectors.toList());
         }
     }
 
