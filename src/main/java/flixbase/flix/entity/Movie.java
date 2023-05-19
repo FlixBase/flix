@@ -58,7 +58,7 @@ public class Movie {
     @Column(name="imdb_id")
     private String imdbId;
 
-    @Column(name="vote_average")
+    @Column(name="vote_avg")
     private Double voteAverage;
 
     @Column(name="vote_count")
