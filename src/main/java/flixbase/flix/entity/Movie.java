@@ -49,14 +49,23 @@ public class Movie {
     @Column(name="adult") 
     private Boolean adult;
 
-    @Column(name="year")
-    private String year;
+    @Column(name="release_date")
+    private String releaseDate;
 
-    @Column(name="actors")
-    private String actors;
+    @Column(name="csv_id")
+    private Integer csvId;
 
-    @Column(name="tags")
-    private String tags;
+    @Column(name="imdb_id")
+    private String imdbId;
+
+    @Column(name="vote_average")
+    private Double voteAverage;
+
+    @Column(name="vote_count")
+    private Integer voteCount;
+
+    @Column(name="popularity")
+    private Double popularity;
 
     @ManyToMany(fetch=FetchType.EAGER)
     @JsonManagedReference
@@ -97,18 +106,28 @@ public class Movie {
         if(movieDto.getPosterUrl() != null) {
             this.posterUrl = movieDto.getPosterUrl();
         }
-        if(movieDto.getYear() != null) {
-            this.year = movieDto.getYear();
+        if(movieDto.getReleaseDate() != null) {
+            this.releaseDate = movieDto.getReleaseDate();
+        }
+        if(movieDto.getCsvId() != null) {
+            this.csvId = movieDto.getCsvId();
+        }
+        if(movieDto.getImdbId() != null) {
+            this.imdbId = movieDto.getImdbId();
+        }
+        if(movieDto.getVoteAverage() != null) {
+            this.voteAverage = movieDto.getVoteAverage();
+        }
+        if(movieDto.getVoteCount() != null) {
+            this.voteCount = movieDto.getVoteCount();
+        }
+        if(movieDto.getPopularity() != null) {
+            this.popularity = movieDto.getPopularity();
         }
         if(movieDto.getAdult() != null) {
             this.adult = movieDto.getAdult();
         }
-        if(movieDto.getActors() != null) {
-            this.actors = movieDto.getActors();
-        }
-        if(movieDto.getTags() != null) {
-            this.tags = movieDto.getTags();
-        }
+
     }
 
 }

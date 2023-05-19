@@ -26,11 +26,17 @@ public class MovieDto {
 
     private Boolean adult;
 
-    private String year;
+    private String releaseDate;
 
-    private String actors;
+    private Integer csvId;
 
-    private String tags;
+    private String imdbId;
+
+    private Double voteAverage;
+
+    private Integer voteCount;
+
+    private Double popularity;
 
     private List<GenreDto> genres;
 
@@ -53,14 +59,23 @@ public class MovieDto {
         if(movie.getPosterUrl() != null) {
             this.posterUrl = movie.getPosterUrl();
         }
-        if(movie.getYear() != null) {
-            this.year = movie.getYear();
+        if(movie.getReleaseDate() != null) {
+            this.releaseDate = movie.getReleaseDate();
         }
-        if(movie.getActors() != null) {
-            this.actors = movie.getActors();
+        if(movie.getCsvId() != null) {
+            this.csvId = movie.getCsvId();
         }
-        if(movie.getTags() != null) {
-            this.tags = movie.getTags();
+        if(movie.getImdbId() != null) {
+            this.imdbId = movie.getImdbId();
+        }
+        if(movie.getVoteAverage() != null) {
+            this.voteAverage = movie.getVoteAverage();
+        }
+        if(movie.getVoteCount() != null) {
+            this.voteCount = movie.getVoteCount();
+        }
+        if(movie.getPopularity() != null) {
+            this.popularity = movie.getPopularity();
         }
         if(movie.getGenres() != null) {
             this.genres = movie.getGenres().stream().map(genre -> new GenreDto(genre)).collect(Collectors.toList());
@@ -70,5 +85,4 @@ public class MovieDto {
         }
     }
 
-    
 }
