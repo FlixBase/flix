@@ -41,7 +41,7 @@ public class User {
     @Column(name="email", unique=true) 
     private String email;
 
-    @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToMany(fetch=FetchType.EAGER)
     @JsonManagedReference
     @JoinTable(
         name="user_genre",

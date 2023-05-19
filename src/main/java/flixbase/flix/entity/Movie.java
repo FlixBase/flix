@@ -46,9 +46,8 @@ public class Movie {
     @Column(name="poster_url")
     private String posterUrl;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name="film_rating") 
-    private FilmRating filmRating;
+    @Column(name="adult") 
+    private Boolean adult;
 
     @Column(name="year")
     private String year;
@@ -59,7 +58,7 @@ public class Movie {
     @Column(name="tags")
     private String tags;
 
-    @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToMany(fetch=FetchType.EAGER)
     @JsonManagedReference
     @JoinTable(
         name="movie_genre",
@@ -101,8 +100,8 @@ public class Movie {
         if(movieDto.getYear() != null) {
             this.year = movieDto.getYear();
         }
-        if(movieDto.getFilmRating() != null) {
-            this.filmRating = movieDto.getFilmRating();
+        if(movieDto.getAdult() != null) {
+            this.adult = movieDto.getAdult();
         }
         if(movieDto.getActors() != null) {
             this.actors = movieDto.getActors();

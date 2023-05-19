@@ -4,7 +4,6 @@ package flixbase.flix.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import flixbase.flix.entity.FilmRating;
 import flixbase.flix.entity.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +24,7 @@ public class MovieDto {
 
     private String posterUrl;
 
-    private FilmRating filmRating;
+    private Boolean adult;
 
     private String year;
 
@@ -48,8 +47,8 @@ public class MovieDto {
         if(movie.getDescription() != null) {
             this.description = movie.getDescription();
         }
-        if(movie.getFilmRating() != null) {
-            this.filmRating = movie.getFilmRating();
+        if(movie.getAdult() != null) {
+            this.adult = movie.getAdult();
         }
         if(movie.getPosterUrl() != null) {
             this.posterUrl = movie.getPosterUrl();
