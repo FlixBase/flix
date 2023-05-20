@@ -41,6 +41,18 @@ public class User {
     @Column(name="email", unique=true) 
     private String email;
 
+    @Column(name="password", nullable=false)
+    private String password;
+
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JsonManagedReference
+    @JoinTable(
+        name="users_roles",
+        joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+        inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")}
+    )
+    private List<Role> roles;
+
     @ManyToMany(fetch=FetchType.EAGER)
     @JsonManagedReference
     @JoinTable(
@@ -70,14 +82,15 @@ public class User {
         views.remove(view);
     }
 
+    // only pass two field, password and rold need to be handled in service layer
     public User(UserDto userDto) {
         if(userDto.getEmail() != null) {
             this.email = userDto.getEmail();
         }
         if(userDto.getUsername() != null) {
             this.username = userDto.getUsername();
-        }
-    }
+        }  
 
+    }
     
 }

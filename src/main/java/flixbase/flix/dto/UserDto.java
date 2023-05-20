@@ -21,6 +21,10 @@ public class UserDto {
     private String username;
 
     private String email;
+
+    private String password;
+
+    private List<RoleDto> roles;
     
     private List<GenreDto> favoriteGenres;
 
@@ -42,6 +46,9 @@ public class UserDto {
         }
         if(user.getViews() != null) {
             this.views = user.getViews().stream().map(view -> new ViewDto(view)).collect(Collectors.toList());
+        }
+        if(user.getRoles() != null) {   
+            this.roles = user.getRoles().stream().map(role -> new RoleDto(role)).collect(Collectors.toList());
         }
     }
 
