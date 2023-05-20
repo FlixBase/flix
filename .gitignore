@@ -47,3 +47,5 @@ buildNumber.properties
 
 .mvn/wrapper/maven-wrapper.jar
 application.properties
+
+.DS_Store
