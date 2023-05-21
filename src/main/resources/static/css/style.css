@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Grand+Hotel&family=Hammersmith+One&display=swap');
+
+.dashboard_container {
+    display: flex;
+    height: 100%;
+    background-color: salmon;
+    position: relative;
+}
+
+.dashboard_nav_full_wrapper {
+
+    position:relative;
+    display: flex;
+}
+
+.dashboard_nav_container {
+    padding-top: 50px;
+    background-color:blue;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.dashboard_nav_container .dashboard_logo {
+    font-size: 4rem;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Hammersmith One', sans-serif; 
+    /* font-family: 'Archivo Black', sans-serif; */
+
+    /* font-family: 'Grand Hotel', cursive; */
+}
+
+.dash_nav_inner_container {
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
+}
+
+.dash_nav_inner_container > li > a, .dashboard_nav_container a {
+    text-decoration: none;
+    color: white;
+}
+
+.dashboard_nav_user {
+    width: 100%;
+    position: absolute; 
+    bottom: 0; 
+    display: flex;
+    padding: 20px 30px;
+    border-top: 1px solid #eee;
+}
+
+.dashboard_nav_user .user_icon {
+    width: 70px; 
+    height: 70px; 
+    background: black; 
+    color: white; 
+    border-radius: 50%;
+}
+
+.dashboard_nav_user .user_name {
+    padding-left: 10px;
+    flex:1;
+}
+
+.dashboard_nav_user .user_name p {
+    margin: 0;
+    color: white;
+    text-transform: upperase;
+    font-weight: 700;
+}
+
+.user_icon h1 {
+    font-weight: 900;
+    font-size: 3rem;
+    text-transform: capitalize;
+    padding: 0;
+    margin: 0;
+    line-height: 0.75;
+}
+

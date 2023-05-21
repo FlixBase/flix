@@ -1,59 +1,62 @@
 <!DOCTYPE html>
-<html lang="en"
-    xmlns:th="http://www.thymeleaf.org"
->
-<head>
-    <meta charset="UTF-8">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
     <title>Flix - Where Movie meets Database</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <!-- main dashboard container wrapper full remainder height full width-->
-    <div style="background:salmon; height: 100vh;">
-        <!-- main dashboard navbar container wrapper -->
-        <div class="h-100 col-xs-4 col-sm-3 col-md-2" style="background:white">
-          <!-- dash navbar container-->
-          <div class="container h-100" style="background:blue">
-                <div th:fragment="dashboard_nav(active)" class="dash_nav_inner_container">
-                    <div class="d-flex justify-content-center align-items-center" style="width: 70px; height: 70px; background: black; color: white; border-radius: 50%;">
-                        <h1 th:if="${user}" th:text="${#strings.substring(user.username, 0, 1)}" style="font-weight: 900;font-size: 3rem;text-transform: capitalize;padding: 0;margin: 0;line-height: 0.75;"/>
-                    </div>
-                    <ul>
-                        <li>
-                            <a
-                                th:href="@{/user}"
-                            >Home</a>
-                        </li>
-                        <li>
-                            <a
-                            th:href="@{/user}"
-                            >Top Picks</a>
-                        </li>
-                        <li>
-                            <a
-                            th:href="@{/user}"
-                            >My Favorites</a>
-                        </li>
-                        <li>
-                            <a
-                            th:href="@{/user}"
-                            >Movies</a>
-                        </li>
-                    </ul>
-                </div>
-                <div style="position: absolute; bottom: 0;">
-                    <a th:href="@{/logout}">Log out</a>
-                </div>
-            </div>
-            
-        </div>
 
-   </div>
- 
-</body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- main dashboard container wrapper full remainder height full width-->
+    <div class="dashboard_container">
+      <!-- main dashboard navbar container wrapper -->
+      <div class="h-100 col-xs-4 col-sm-3 col-md-2 dashboard_nav_full_wrapper">
+        <!-- dash navbar container-->
+        <div class="container h-100 dashboard_nav_container">
+          <div
+            th:fragment="dashboard_nav(active)"
+            class="d-flex flex-column align-items-center"
+          >
+            <div class="dashboard_logo">
+                Flix
+            </div>
+
+            <ul class="dash_nav_inner_container">
+              <li>
+                <a th:href="@{/user}">Home</a>
+              </li>
+              <li>
+                <a th:href="@{/user}">Top Picks</a>
+              </li>
+              <li>
+                <a th:href="@{/user}">My Favorites</a>
+              </li>
+              <li>
+                <a th:href="@{/user}">Movies</a>
+              </li>
+            </ul>
+            <div class="dashboard_nav_user">
+              <div class="d-flex justify-content-center align-items-center user_icon">
+                <h1
+                  th:if="${user}"
+                  th:text="${#strings.substring(user.username, 0, 1)}"
+                />
+              </div>
+              <div class="d-flex flex-column justify-content-center user_name">
+                <p th:text="${user.username}" />
+                <a th:href="@{/logout}">Log out</a>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
