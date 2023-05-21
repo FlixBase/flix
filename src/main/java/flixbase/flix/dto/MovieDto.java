@@ -4,6 +4,9 @@ package flixbase.flix.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import flixbase.flix.entity.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +17,7 @@ import lombok.Setter;
 @Setter 
 @NoArgsConstructor  
 @AllArgsConstructor 
+@JsonInclude(value = Include.NON_NULL)
 public class MovieDto {
 
     private Integer id;
@@ -40,8 +44,9 @@ public class MovieDto {
 
     private List<GenreDto> genres;
 
-    private List<ViewDto> views;
+    private Boolean favorite;
 
+    private Boolean viewed;
 
     public MovieDto(Movie movie) {
         if(movie.getId() != null) {
@@ -79,9 +84,6 @@ public class MovieDto {
         }
         if(movie.getGenres() != null) {
             this.genres = movie.getGenres().stream().map(genre -> new GenreDto(genre)).collect(Collectors.toList());
-        }
-        if(movie.getViews() != null) {
-            this.views = movie.getViews().stream().map(view -> new ViewDto(view)).collect(Collectors.toList());
         }
     }
 
