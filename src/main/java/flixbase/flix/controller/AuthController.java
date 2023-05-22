@@ -59,7 +59,10 @@ public class AuthController {
         if(existingUserFound != null && existingUserFound.getUsername() != null && !existingUserFound.getUsername().isEmpty()) {
             result.rejectValue("username", null, "There is already an account associated with that username.");
         }
-
+        UserDto existingUserWithEmail = userService.findUserByEmail(userDto.getEmail());
+        if(existingUserWithEmail != null && existingUserWithEmail.getEmail() != null && !existingUserWithEmail.getEmail().isEmpty()) {
+            result.rejectValue("email", null, "There is already an account associated with that email address.");
+        }
         if(result.hasErrors()) {
             model.addAttribute("user", userDto);
             // return "/register";
