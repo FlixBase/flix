@@ -59,6 +59,7 @@ public class AuthController {
         if(existingUserFound != null && existingUserFound.getUsername() != null && !existingUserFound.getUsername().isEmpty()) {
             result.rejectValue("username", null, "There is already an account associated with that username.");
         }
+
         if(result.hasErrors()) {
             model.addAttribute("user", userDto);
             // return "/register";

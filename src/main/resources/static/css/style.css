@@ -63,7 +63,7 @@
 
 .dashboard_nav_container {
     padding-top: 50px;
-    background-color:blue;
+    background-color:#7d7d7d;;
     position: sticky;
     top: 0;
     height: 100vh;
@@ -86,7 +86,7 @@
 }
 
 .dash_nav_item {
-    margin: 5px;
+    margin: 10px;
 }
 
 .dash_nav_item .svg_container {
@@ -115,6 +115,11 @@
     background: #00000030;
 }
 
+.dash_nav_item a.active svg path {
+    fill: salmon !important;
+}
+
+
 .dash_nav_inner_container > li > a, .dashboard_nav_container a {
     text-decoration: none;
     color: white;
@@ -126,15 +131,15 @@
     position: absolute; 
     bottom: 0; 
     display: flex;
-    padding: 20px;
+    padding: 20px 25px;
     border-top: 1px solid #eee;
 }
 
 .dashboard_nav_user .user_icon {
     width: 70px; 
     height: 70px; 
-    background: black; 
-    color: white; 
+    background:  white; 
+    color: #333; 
     border-radius: 50%;
 }
 
