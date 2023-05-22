@@ -12,10 +12,12 @@ public interface MovieService {
     List<MovieDto> getTopRated(Integer topSize);
     List<MovieDto> getTopPopular(Integer topSize);
 
-    List<MovieDto> getTopByRatedGenre(String genre, Integer topSize);
+    List<MovieDto> getTopByRatedGenre(Integer genreId, Integer topSize);
     List<MovieDto> getTopByPopularGenre(String genre, Integer topSize);
-    List<MovieDto> getUserRecomendations(Integer userId, Integer topSize);
 
     List<MovieDto> enrichMoviesWithFavorites(List<ViewDto> viewDtos, List<MovieDto> movieDtos);
     List<MovieDto> enrichMoviesWithViewed(List<ViewDto> viewDtos, List<MovieDto> movieDtos);
+
+    List<ViewDto> getReviews(Integer movieId);
+
 }

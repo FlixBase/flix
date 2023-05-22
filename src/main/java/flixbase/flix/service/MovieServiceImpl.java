@@ -2,6 +2,7 @@ package flixbase.flix.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import flixbase.flix.dto.MovieDto;
 import flixbase.flix.dto.ViewDto;
 import flixbase.flix.entity.Movie;
+import flixbase.flix.entity.View;
 import flixbase.flix.repository.MovieRepository;
 
 @Service
@@ -45,7 +47,7 @@ public class MovieServiceImpl implements MovieService {
             .map(movie -> new MovieDto(movie)).collect(Collectors.toList());
     }
     @Override
-    public List<MovieDto> getTopByRatedGenre(String genre, Integer topSize) {
+    public List<MovieDto> getTopByRatedGenre(Integer genreId, Integer topSize) {
         return new ArrayList<>();
     }
     @Override
@@ -53,8 +55,16 @@ public class MovieServiceImpl implements MovieService {
         return new ArrayList<>();
     }
     @Override
-    public List<MovieDto> getUserRecomendations(Integer userId, Integer topSize) {
-        return new ArrayList<>();
+    public List<ViewDto> getReviews(Integer movieId) {
+        // TODO: add filter by review and rating OR if only has Text Review
+        Optional<Movie> movieOptional = movieRepository.findById(movieId);
+        if (movieOptional.isPresent()) {
+            List<View> views = movieOptional.get().getViews();
+            return views.stream().map(view -> new ViewDto(view)).collect(Collectors.toList());
+        } 
+        else {
+            throw new IllegalArgumentException("Movie with ID " + movieId + " not found");
+        }
     }
     @Override
     public List<MovieDto> enrichMoviesWithFavorites(List<ViewDto> viewDtos, List<MovieDto> movieDtos) {
