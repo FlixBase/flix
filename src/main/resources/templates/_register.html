@@ -15,7 +15,7 @@
 <body>
     <div th:if="${param.success}">
         <div class="alert alert-info">
-          You have successfully registered our app!
+          You have successfully registered!
         </div>
     </div>
     <div>
@@ -23,7 +23,7 @@
         <form
         method="post"
         role="form"
-        th:action="@{/register/save}"
+        th:action="@{/register}"
         th:object="${user}"
       >
         <div class="form-group mb-3">

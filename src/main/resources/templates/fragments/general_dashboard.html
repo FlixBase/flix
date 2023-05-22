@@ -28,17 +28,30 @@
             </div>
 
             <ul class="dash_nav_inner_container">
-              <li>
-                <a th:href="@{/user}">Home</a>
+              <li class="dash_nav_item">
+                <a 
+                    th:href="@{/user}"
+                    th:class="${active == 'user'} ? 'nav-link active' : 'nav-link'">Home</a>
               </li>
-              <li>
-                <a th:href="@{/user}">Top Picks</a>
+              <li class="dash_nav_item">
+                <a 
+                    th:href="@{/user}"
+                    th:class="${active == 'recommendations'} ? 'nav-link active' : 'nav-link'">Top Picks</a>
               </li>
-              <li>
-                <a th:href="@{/user}">My Favorites</a>
+              <li class="dash_nav_item">
+                <a 
+                    th:href="@{/user}"
+                    th:class="${active == 'favorites'} ? 'nav-link active' : 'nav-link'">My Favorites</a>
               </li>
-              <li>
-                <a th:href="@{/user}">Movies</a>
+              <li class="dash_nav_item">
+                <a 
+                    th:href="@{/user}"
+                    th:class="${active == 'reviews'} ? 'nav-link active' : 'nav-link'">My Reviews</a>
+              </li>
+              <li class="dash_nav_item">
+                <a 
+                    th:href="@{/user}"
+                    th:class="${active == 'movies' ? 'nav-link active' : 'nav-link'}">Movies</a>
               </li>
             </ul>
             <div class="dashboard_nav_user">

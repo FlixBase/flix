@@ -1,5 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Grand+Hotel&family=Hammersmith+One&display=swap');
 
+.home_container {
+    min-height: 100vh;
+    background-image: url("/img/movie_posters1_red.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0;
+}
+.home_container_inner {
+    min-height: 100vh;
+    background-color: #00000070;
+    width: 100vw;
+    padding: 50px;
+    display: flex;
+}
+
+.home_container_inner h1 {
+    font-size: 6rem;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Hammersmith One', sans-serif; 
+    line-height: 0.8;
+    padding: 0;
+    margin: 0;
+}
+
+.home_container_inner h1 a {
+    text-decoration: none;
+    color: white;
+}
+
+.home_container_inner h6 {
+    color: white;
+    font-weight: 100;
+}
+ 
+.home_container_inner .form_wrapper {
+    width: 500px;
+    align-items: center;
+    display: flex;
+}
+
+.home_container_inner .form_wrapper form {
+    background-color: white;
+    padding: 50px;
+    width: 100%;
+
+}
+
 .dashboard_container {
     display: flex;
     height: 100%;
@@ -37,9 +85,22 @@
     list-style-type: none;
 }
 
+.dash_nav_item a.nav-link{
+    padding: 20px;
+    text-decoration: none;
+    color: white;
+    border-radius: 15px;
+    font-weight: 400;
+}
+
+.dash_nav_item a.nav-link.active {
+    background: #00000030;
+}
+
 .dash_nav_inner_container > li > a, .dashboard_nav_container a {
     text-decoration: none;
     color: white;
+    font-weight: 200;
 }
 
 .dashboard_nav_user {
@@ -47,7 +108,7 @@
     position: absolute; 
     bottom: 0; 
     display: flex;
-    padding: 20px 30px;
+    padding: 20px;
     border-top: 1px solid #eee;
 }
 
@@ -60,15 +121,15 @@
 }
 
 .dashboard_nav_user .user_name {
-    padding-left: 10px;
+    padding-left: 20px;
     flex:1;
 }
 
 .dashboard_nav_user .user_name p {
     margin: 0;
     color: white;
-    text-transform: upperase;
-    font-weight: 700;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 .user_icon h1 {
