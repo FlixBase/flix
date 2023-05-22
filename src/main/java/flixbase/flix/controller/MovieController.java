@@ -34,6 +34,7 @@ public class MovieController {
     public MovieController(MovieService movieService, UserService userService, GenreService genreService) {
         this.movieService = movieService;
         this.userService = userService;
+        this.genreService = genreService;
     }
 
     @GetMapping({"/getMovieById"})

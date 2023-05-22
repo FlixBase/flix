@@ -15,6 +15,7 @@ public class GenreServiceImpl implements GenreService {
     @Autowired
     GenreRepository genreRepository;
 
+    @Override
     public List<GenreDto> getGenres() {
         List<Genre> genres = genreRepository.findAll();
         return genres.stream()
