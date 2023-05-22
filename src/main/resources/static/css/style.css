@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Grand+Hotel&family=Hammersmith+One&display=swap');
+
+.home_container {
+    min-height: 100vh;
+    background-image: url("/img/movie_posters1_red.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0;
+}
+.home_container_inner {
+    min-height: 100vh;
+    background-color: #00000080;
+    width: 100vw;
+    padding: 50px;
+    display: flex;
+}
+
+.home_container_inner h1 {
+    font-size: 6rem;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Hammersmith One', sans-serif; 
+    line-height: 0.8;
+    padding: 0;
+    margin: 0;
+}
+
+.home_container_inner h1 a {
+    text-decoration: none;
+    color: white;
+}
+
+.home_container_inner h6 {
+    color: white;
+    font-weight: 100;
+}
+ 
+.home_container_inner .form_wrapper {
+    width: 500px;
+    align-items: center;
+    display: flex;
+}
+
+.home_container_inner .form_wrapper form {
+    background-color: white;
+    padding: 50px;
+    width: 100%;
+
+}
+
+.dashboard_container {
+    display: flex;
+    height: 100%;
+    background-color: salmon;
+    position: relative;
+}
+
+.dashboard_nav_full_wrapper {
+    position: relative;
+    display: flex;
+    max-width: 300px;
+    border-right: 1px solid #bbbbbb;
+}
+
+.dashboard_nav_container {
+    padding: 50px 0 0 0;
+    background-color:#7d7d7d;;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display:flex;
+}
+
+.dashboard_nav_container .dashboard_logo {
+    font-size: 4rem;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Hammersmith One', sans-serif; 
+    /* font-family: 'Archivo Black', sans-serif; */
+
+    /* font-family: 'Grand Hotel', cursive; */
+}
+
+.dash_nav_inner_container {
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
+    flex:1;
+}
+
+.dash_nav_item {
+    margin: 10px 20px;
+}
+
+.dash_nav_item .svg_container {
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.dash_nav_item a.nav_link{
+    padding: 12px 20px;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+}
+
+.dash_nav_item a.nav_link:hover {
+    background:#00000010;
+}
+
+.dash_nav_item a.nav_link.active {
+    background: #00000030;
+}
+
+.dash_nav_item a.active svg path {
+    fill: #f95f5f  !important;
+}
+
+
+.dash_nav_inner_container > li > a, .dashboard_nav_container a {
+    text-decoration: none;
+    color: white;
+    font-weight: 200;
+}
+
+.dashboard_nav_user {
+    width: 100%;
+    /* position: absolute;  */
+    bottom: 0; 
+    display: flex;
+    padding: 20px 25px;
+    border-top: 1px solid #bbbbbb;
+}
+
+.dashboard_nav_user .user_icon {
+    width: 70px; 
+    height: 70px; 
+    background:  white; 
+    color: #333; 
+    border-radius: 50%;
+}
+
+.dashboard_nav_user .user_name {
+    padding-left: 20px;
+    flex:1;
+}
+
+.dashboard_nav_user .user_name p {
+    margin: 0;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.user_icon h1 {
+    font-weight: 900;
+    font-size: 3rem;
+    text-transform: capitalize;
+    padding: 0;
+    margin: 0;
+    line-height: 0.75;
+}
+
+/* .dashboard_top_banner {
+    height: 100px;
+    background-image: url("/img/movie_posters_2_red.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0;
+} */
+

@@ -25,14 +25,17 @@ public class AuthController {
     }
     @GetMapping("/index")
     public String index(Model model, Principal principal) {
+        UserDto user = new UserDto();
+        model.addAttribute("user", user);
+        
         return principal == null ? "index" : "redirect:/user";
     }
 
     @GetMapping("/")
     public String home(Model model, Principal principal) {
-
+        UserDto user = new UserDto();
+        model.addAttribute("user", user);
         return principal == null ? "index" : "redirect:/user";
-
     }
 
     @GetMapping("/login")
@@ -43,25 +46,28 @@ public class AuthController {
         return "login";
     }
 
-    @GetMapping("/register") 
-    public String registrationForm(Model model) {
-        UserDto user = new UserDto();
-        model.addAttribute("user", user);
-        return "register";
-    }
+    // @GetMapping("/register") 
+    // public String registrationForm(Model model) {
+    //     UserDto user = new UserDto();
+    //     model.addAttribute("user", user);
+    //     return "register";
+    // }
 
-    @PostMapping("/register/save")
+    @PostMapping("/register")
     public String registration(@Valid @ModelAttribute("user") UserDto userDto, BindingResult result, Model model) {
         UserDto existingUserFound = userService.findUserByUsername(userDto.getUsername());
         if(existingUserFound != null && existingUserFound.getUsername() != null && !existingUserFound.getUsername().isEmpty()) {
             result.rejectValue("username", null, "There is already an account associated with that username.");
         }
+
         if(result.hasErrors()) {
             model.addAttribute("user", userDto);
-            return "/register";
+            // return "/register";
+            return "/index";
         }
         userService.save(userDto);
 
-        return "redirect:/register?success";
+        // return "redirect:/register?success";
+        return "redirect:/login";
     }
 }
