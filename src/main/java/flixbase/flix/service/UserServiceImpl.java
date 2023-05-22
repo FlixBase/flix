@@ -53,6 +53,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDto findUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        if(user != null) {
+            return new UserDto(user);
+        }
+        return null;
+    }
+
+
+    @Override
     public UserDto update(UserDto userDto) {
         User user = new User(userDto);
         return new UserDto(userRepository.save(user));

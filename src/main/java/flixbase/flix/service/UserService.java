@@ -12,6 +12,8 @@ public interface UserService {
 
     UserDto findUserByUsername(String username);
 
+    UserDto findUserByEmail(String email);
+
     UserDto update(UserDto userDto);
 
     List<ViewDto> excludeUserReviews(Integer userId, List<ViewDto> movieReviews);
