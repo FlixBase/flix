@@ -36,7 +36,6 @@ public class AuthController {
         UserDto user = new UserDto();
         model.addAttribute("user", user);
         return principal == null ? "index" : "redirect:/user";
-
     }
 
     @GetMapping("/login")
