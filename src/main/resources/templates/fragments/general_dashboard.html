@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flix - Where Movie meets Database</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- main dashboard container wrapper full remainder height full width-->
+    <div class="dashboard_container">
+      <!-- main dashboard navbar container wrapper -->
+      <div class="col col-sm-5 col-md-4 col-lg-3 dashboard_nav_full_wrapper">
+        <!-- dash navbar container-->
+        <div class="container h-100 dashboard_nav_container">
+          <div
+            th:fragment="dashboard_nav(active)"
+            class="d-flex flex-column align-items-center" style="flex:1;"
+          >
+            <div class="dashboard_logo">Flix</div>
+
+            <ul class="dash_nav_inner_container">
+              <li class="dash_nav_item">
+                <a
+                  th:href="@{/user}"
+                  th:class="${active == 'user'} ? 'nav_link active' : 'nav_link'"
+                  >
+                  <div class="svg_container">
+                    <svg fill="#ffffff" width="32px" height="32px" viewBox="0 0 24 24" id="home-alt-3" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path id="primary" d="M21.71,11.29l-9-9a1,1,0,0,0-1.42,0l-9,9a1,1,0,0,0-.21,1.09A1,1,0,0,0,3,13H4v7.3A1.77,1.77,0,0,0,5.83,22H8.5a1,1,0,0,0,1-1V16.1a1,1,0,0,1,1-1h3a1,1,0,0,1,1,1V21a1,1,0,0,0,1,1h2.67A1.77,1.77,0,0,0,20,20.3V13h1a1,1,0,0,0,.92-.62A1,1,0,0,0,21.71,11.29Z" style="fill: #ffffff;"></path></g></svg>
+
+                  </div>
+                  Home
+                </a>
+              </li>
+              <li class="dash_nav_item">
+                <a
+                  th:href="@{/user}"
+                  th:class="${active == 'recommendations'} ? 'nav_link active' : 'nav_link'"
+                  >
+                  <div class="svg_container">
+                    <svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff" width="36px" height="36px"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g id="🔍-Product-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="ic_fluent_recommended_24_filled" fill="#ffffff" fill-rule="nonzero"> <path d="M17.0020594,17.4830721 L17.0007001,22.2453233 C17.0007001,22.7945586 16.4297842,23.157512 15.9324488,22.9244522 L12.0005291,21.0818879 L8.07069102,22.9243915 C7.5733438,23.1575726 7.00231009,22.7946207 7.00231009,22.2453233 L7.00260026,17.4861909 C8.43218245,18.4424048 10.1509746,19 12,19 C13.8510348,19 15.5715531,18.4411922 17.0020594,17.4830721 Z M12,2 C16.418278,2 20,5.581722 20,10 C20,14.418278 16.418278,18 12,18 C7.581722,18 4,14.418278 4,10 C4,5.581722 7.581722,2 12,2 Z M11.8084497,6.58610926 L11.7712148,6.64234387 L10.8586922,8.49499737 L8.81472896,8.79035658 C8.62860433,8.81725218 8.54185205,9.02358857 8.63135587,9.17274189 L8.67333197,9.22553178 L10.1533251,10.6658938 L9.80260908,12.7010893 C9.77067264,12.8864156 9.94010228,13.0326834 10.1096137,12.9936511 L10.1727912,12.9700424 L12,12.0075816 L13.8272087,12.9700424 C13.9935181,13.0576439 14.1849216,12.9418506 14.2003028,12.7686538 L14.1974269,12.7012993 L13.8484251,10.6658938 L15.326776,9.22542655 C15.4614232,9.09422981 15.4102807,8.87641205 15.2502405,8.80838398 L15.185271,8.79035658 L13.1413078,8.49499737 L12.2287851,6.64234387 C12.1560771,6.494728 11.9762193,6.46192448 11.8558892,6.54393329 L11.8084497,6.58610926 L11.8084497,6.58610926 Z" id="🎨-Color"> </path> </g> </g> </g></svg>
+                  </div>
+                  Top Picks
+                </a>
+              </li>
+              <li class="dash_nav_item">
+                <a
+                  th:href="@{/user}"
+                  th:class="${active == 'favorites'} ? 'nav_link active' : 'nav_link'"
+                  >
+                  <div class="svg_container">
+                    <svg fill="#ffffff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" height="26px" width="26px"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M467.204,67.921C412.786,20.394,329.86,25.984,282.31,80.365l-26.311,29.66l-26.311-29.66 C182.138,25.984,99.212,20.396,44.795,67.921c-54.437,47.543-60.045,130.51-12.503,184.946l185.641,206.535 c9.692,10.783,23.568,16.968,38.067,16.968c14.499,0,28.375-6.185,38.067-16.968L479.546,253.05l0.161-0.182 C527.251,198.431,521.641,115.464,467.204,67.921z"></path> </g> </g> </g></svg>
+                  </div>
+                    My Favorites
+                </a>
+              </li>
+              <li class="dash_nav_item">
+                <a
+                  th:href="@{/user}"
+                  th:class="${active == 'reviews'} ? 'nav_link active' : 'nav_link'"
+                  >
+                  <div class="svg_container">
+
+                    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" width="36px" height="36px"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="#ffffff" fill-rule="evenodd" d="M8,0 C8.55228,0 9,0.447715 9,1 L11,1 L11,2 L13,2 C13.5523,2 14,2.44772 14,3 L14,15 C14,15.5523 13.5523,16 13,16 L3,16 C2.44772,16 2,15.5523 2,15 L2,3 C2,2.44772 2.44772,2 3,2 L5,2 L5,1 L7,1 C7,0.447715 7.44772,0 8,0 Z M5,4 L4,4 L4,14 L12,14 L12,4 L11,4 L11,5 L5,5 L5,4 Z M6,10 L10,10 C10.5523,10 11,10.4477 11,11 C11,11.51285 10.613973,11.9355092 10.1166239,11.9932725 L10,12 L6,12 C5.44772,12 5,11.5523 5,11 C5,10.48715 5.38604429,10.0644908 5.88337975,10.0067275 L6,10 Z M10,7 C10.5523,7 11,7.44772 11,8 C11,8.55228 10.5523,9 10,9 L6,9 C5.44772,9 5,8.55228 5,8 C5,7.44772 5.44772,7 6,7 L10,7 Z M8,2 C7.44772,2 7,2.44772 7,3 C7,3.55228 7.44772,4 8,4 C8.55228,4 9,3.55228 9,3 C9,2.44772 8.55228,2 8,2 Z"></path> </g></svg>
+                  </div>
+                    My Reviews
+                </a>
+              </li>
+              <li class="dash_nav_item">
+                <a
+                  th:href="@{/user}"
+                  th:class="${active == 'movies' ? 'nav_link active' : 'nav_link'}"
+                  >
+                  <div class="svg_container">
+
+                  <svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" stroke="#ffffff" width="36px" height="36px" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">    <g id="🔍-Product-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="ic_fluent_movies_and_tv_24_filled" fill-rule="nonzero" fill="#ffffff"> <path d="M19.7286477,3.87458256 L19.7796475,4.03423199 L20.3309222,5.95675538 C20.4355805,6.32174238 20.2508505,6.70115383 19.9126449,6.84979651 L19.8167039,6.88442967 L9.08979429,9.9595254 L20.2488588,9.96046231 C20.6285546,9.96046231 20.9423498,10.2426162 20.9920122,10.6086918 L20.9988588,10.7104623 L20.9988588,19.2084746 C20.9988588,20.6710064 19.8571542,21.8668789 18.4163811,21.9534558 L18.2488588,21.9584746 L5.75,21.9584746 C4.28746816,21.9584746 3.09159572,20.81677 3.00501879,19.3759969 L3,19.2084746 L2.99979429,10.8165254 L2.47803395,8.99538983 C2.07490554,7.589514 2.84275532,6.12527119 4.20385145,5.64491723 L4.36350088,5.59391744 L16.3781751,2.14876505 C17.7840509,1.74563665 19.2482937,2.51348642 19.7286477,3.87458256 Z M6.27268011,6.60691826 L4.77695691,7.03580999 C4.15481999,7.21420488 3.7786565,7.83376496 3.89085867,8.45731315 L3.91988247,8.58194642 L4.26421826,9.78278802 L4.55930489,9.69792899 L6.27268011,6.60691826 Z M11.029003,5.24306462 L8.31151617,6.02229143 L6.59814094,9.11330216 L9.31562776,8.33407535 L11.029003,5.24306462 Z M15.7862871,3.87893535 L13.0688003,4.65816215 L11.3554251,7.74917288 L14.0719506,6.97022172 L15.7862871,3.87893535 Z M17.6334765,3.64537692 L16.1127092,6.38504361 L18.6812212,5.64877896 L18.3377549,4.44768802 C18.2305941,4.07397383 17.96425,3.78902913 17.6334765,3.64537692 Z" id="🎨-Color"> </path> </g> </g> </g></svg>
+                  </div>
+                  Movies
+                </a>
+              </li>
+            </ul>
+            <div class="dashboard_nav_user">
+              <div
+                class="d-flex justify-content-center align-items-center user_icon"
+              >
+                <h1
+                  th:if="${user}"
+                  th:text="${#strings.substring(user.username, 0, 1)}"
+                />
+              </div>
+              <div class="d-flex flex-column justify-content-center user_name">
+                <p th:text="${user.username}" />
+                <a th:href="@{/logout}">Log out</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

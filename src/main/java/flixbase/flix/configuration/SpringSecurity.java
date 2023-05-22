@@ -28,9 +28,12 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeHttpRequests((authorize) -> authorize
-                .requestMatchers("index").permitAll()
-                .requestMatchers("/register/**").permitAll()
+                .requestMatchers("/").permitAll()
+                .requestMatchers("/index").permitAll()
+                .requestMatchers("/register").permitAll()
                 .requestMatchers("/css/**").permitAll()
+                .requestMatchers("/img/**").permitAll()
+
                 .anyRequest().authenticated())
             .formLogin(
                 form -> form
@@ -41,6 +44,7 @@ public class SpringSecurity {
             .logout(
                 logout -> logout
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/")
                     .permitAll())
             .httpBasic();
         return http.build();
