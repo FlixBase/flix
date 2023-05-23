@@ -16,9 +16,7 @@ public interface UserService {
 
     UserDto update(UserDto userDto);
 
-    List<ViewDto> excludeUserReviews(Integer userId, List<ViewDto> movieReviews);
-
     List<MovieDto> getUserRecomendations(Integer userId);
 
-    List<MovieDto> enrichMoviesWithUserFavorites(List<ViewDto> viewDtos, List<MovieDto> movieDtos);
+    List<ViewDto> excludeUserReviews(Integer userId, List<ViewDto> movieReviews);
 }

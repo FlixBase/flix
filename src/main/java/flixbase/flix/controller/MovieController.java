@@ -72,7 +72,7 @@ public class MovieController {
 
     @GetMapping({"/getTopRatedByGenre"})
     public String getTopRatedByGenre(
-            @RequestParam("genreId") Integer genreId, 
+            @RequestParam("genreId") int genreId, 
             @RequestParam("size") int size, 
             Model model, 
             Principal principal) {

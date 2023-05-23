@@ -1,6 +1,7 @@
 package flixbase.flix.service;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,6 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-
     @Override
     public UserDto update(UserDto userDto) {
         User user = new User(userDto);
@@ -74,41 +74,22 @@ public class UserServiceImpl implements UserService {
         return movieService.getTopPopular(10);
     }
 
-    @Override
-    public List<ViewDto> excludeUserReviews(Integer userId, List<ViewDto> movieReviews) {
-        for (ViewDto review : movieReviews) {
-            if(review.getUserId() == userId) {
-                movieReviews.remove(review);
-            }
-        }
-        return movieReviews;
-    }
-
-    @Override
-    public List<MovieDto> enrichMoviesWithUserFavorites(List<ViewDto> viewDtos, List<MovieDto> movieDtos) {
-        for (MovieDto movieDto : movieDtos) {
-            boolean isFavorite = viewDtos.stream()
-                .filter(viewDto -> viewDto.getMovie().getId().equals(movieDto.getId()))
-                .anyMatch(viewDto -> viewDto.getFavorite());
-            movieDto.setFavorite(isFavorite);
-        }
-        return movieDtos;
-    }
-
-    public List<MovieDto> enrichMoviesWithViewed(List<ViewDto> viewDtos, List<MovieDto> movieDtos) {
-        for (MovieDto movieDto : movieDtos) {
-            boolean movieExistsInViews = viewDtos.stream()
-                    .anyMatch(viewDto -> viewDto.getMovie().getId().equals(movieDto.getId()));
-            if(movieExistsInViews) {
-                movieDto.setViewed(true);
-            }
-        }
-        return movieDtos;
-    }
-
     private Role settingDefaultRoleName() {
         Role role = new Role();
         role.setName("USER");
         return roleRepository.save(role);
     }
+
+    @Override
+    public List<ViewDto> excludeUserReviews(Integer userId, List<ViewDto> movieReviews) {
+        Iterator<ViewDto> iterator = movieReviews.iterator();
+        while (iterator.hasNext()) {
+            ViewDto review = iterator.next();
+            if (review.getUserId() == userId) {
+                iterator.remove();
+            }
+        }
+        return movieReviews;
+    }
+
 }

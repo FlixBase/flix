@@ -10,5 +10,4 @@ public class FlixApplication {
 		SpringApplication.run(FlixApplication.class, args);
         System.out.println("STARTED");
 	}
-
 }
