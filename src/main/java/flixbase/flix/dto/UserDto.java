@@ -1,10 +1,12 @@
 package flixbase.flix.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import flixbase.flix.entity.Genre;
 import flixbase.flix.entity.User;
 
 import lombok.AllArgsConstructor;
@@ -29,6 +31,8 @@ public class UserDto {
     private List<RoleDto> roles;
     
     private List<GenreDto> favoriteGenres;
+
+    private ArrayList<Integer> genreIds = new ArrayList<>();
     
     @JsonManagedReference
     private List<ViewDto> views;
@@ -46,6 +50,9 @@ public class UserDto {
         }
         if(user.getFavoriteGenres() != null) {
             this.favoriteGenres = user.getFavoriteGenres().stream().map(genre -> new GenreDto(genre)).collect(Collectors.toList());
+            for(Genre genre : user.getFavoriteGenres()) {
+                this.genreIds.add(genre.getId());
+            }
         }
         if(user.getViews() != null) {
             this.views = user.getViews().stream().map(view -> new ViewDto(view)).collect(Collectors.toList());

@@ -1,6 +1,7 @@
 package flixbase.flix.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import flixbase.flix.dto.GenreDto;
 import flixbase.flix.dto.UserDto;
+import flixbase.flix.service.GenreService;
 import flixbase.flix.service.UserService;
 
 @Controller
@@ -21,10 +24,12 @@ import flixbase.flix.service.UserService;
 public class UserController {
     
     private UserService userService;
+    private GenreService genreService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, GenreService genreService) {
         this.userService = userService;
+        this.genreService = genreService;
     }
 
     @GetMapping
@@ -49,7 +54,18 @@ public class UserController {
         else {
             throw new AccessDeniedException("User is not authorized to perform this operation");
         }
-        return "user";
+        return "redirect:/user/profile";
     }
+
+    @GetMapping("/profile")
+    public String userProfile(Model model, Principal principal) {
+        UserDto loggedInUser = getPrincipal(principal);
+        List<GenreDto> genres = genreService.getGenres();
+        model.addAttribute("user", loggedInUser);
+        model.addAttribute("genres", genres);
+        return "user_profile";
+    }
+
+
 
 }
