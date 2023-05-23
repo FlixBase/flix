@@ -1,5 +1,6 @@
 package flixbase.flix.service;
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import flixbase.flix.dto.ViewDto;
 import flixbase.flix.entity.Movie;
+
 import flixbase.flix.entity.User;
 import flixbase.flix.entity.View;
 import flixbase.flix.repository.MovieRepository;
@@ -45,5 +47,4 @@ public class ViewServiceImpl implements ViewService{
         view.setUser(user);
         return new ViewDto(viewRepository.save(view));
     }
-
 }
