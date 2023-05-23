@@ -19,10 +19,14 @@ public class ViewDto {
     private Integer rating;
 
     private Boolean favorite;
-
+    
     private UserDto user;
-
+    
     private MovieDto movie;
+
+    private Integer userId;
+
+    private Integer movieId;
 
 
     public ViewDto(View view) {
@@ -39,10 +43,12 @@ public class ViewDto {
             this.favorite = view.getFavorite();
         }
         if(view.getMovie() != null) {
-            this.movie = new MovieDto(view.getMovie());
+            // this.movie = new MovieDto(view.getMovie());
+            this.movieId = view.getMovie().getId();
         }
         if(view.getUser() != null) {
-            this.user = new UserDto(view.getUser());
+            // this.user = new UserDto(view.getUser());
+            this.userId = view.getUser().getId();
         }
 
     }
