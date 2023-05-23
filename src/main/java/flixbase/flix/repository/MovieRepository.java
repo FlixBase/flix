@@ -9,10 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import flixbase.flix.entity.Movie;
 
 public interface MovieRepository  extends JpaRepository<Movie, Integer> {
-
     List<Movie> findAllByOrderByVoteAverage(PageRequest pageRequest);
 
     List<Movie> findAllByOrderByPopularity(PageRequest pageRequest);
-
-    List<Movie> findByGenres_Id(Integer genreId, PageRequest pageRequest);
 }
