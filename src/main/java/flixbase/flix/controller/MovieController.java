@@ -43,29 +43,19 @@ public class MovieController {
         MovieDto movieDto = movieService.getById(movieId);
         ViewDto userMovieReview = new ViewDto();
         for(ViewDto view : userDto.getViews()) {
-            // if (view.getMovie().getId() == movieId) {
-            //     userMovieReview = view;
-            // }
             if(view.getMovieId() == movieId) {
                 userMovieReview = view;
             }
-        }  
-        
-        // if sending over empty dto, preset user and movie id
+        }
         if(userMovieReview.getId() == null) {
             userMovieReview.setUserId(userDto.getId());
             userMovieReview.setMovieId(movieId);
         }
-
         List<ViewDto> movieReviews = movieService.getReviews(movieId);
-        // movieReviews = userService.excludeUserReviews(userDto.getId(), movieReviews);
-
-
         model.addAttribute("movie", movieDto);
         model.addAttribute("userReview", userMovieReview);
         model.addAttribute("reviews", movieReviews);
         model.addAttribute("user", userDto);
-
         return "movie";
     }
 
@@ -85,6 +75,7 @@ public class MovieController {
         Principal principal
         ) {
         List<MovieDto> movies = movieService.getTopByRatedGenre(genreId, size);
+        model.addAttribute("user", getLoggedInUser(principal));
         model.addAttribute("movies", movies);
         return "movie";
     }
@@ -98,6 +89,7 @@ public class MovieController {
             genresMovies.put(genreDto.getName(), movieService.getTopByRatedGenre(genreDto.getId(), size));
         }
 
+        model.addAttribute("user", getLoggedInUser(principal));
         model.addAttribute("genresMovies", genresMovies);
         return "movie";
     }
@@ -113,6 +105,7 @@ public class MovieController {
                 movies.add(viewDto.getMovie());
             }
         }
+        model.addAttribute("user", userDto);
         model.addAttribute("movies", movies);
         return "movies";
     }
@@ -122,6 +115,7 @@ public class MovieController {
         UserDto userDto = getLoggedInUser(principal);
         List<MovieDto> movies = userDto.getViews().stream()
             .map(view -> view.getMovie()).collect(Collectors.toList());
+        model.addAttribute("user", userDto);
         model.addAttribute("movies", movies);
         return "movies";
     }
@@ -131,6 +125,7 @@ public class MovieController {
         UserDto userDto = getLoggedInUser(principal);
         List<MovieDto> movies = userDto.getViews().stream()
             .map(view -> view.getMovie()).collect(Collectors.toList());
+        model.addAttribute("user", userDto);
         model.addAttribute("movies", movies);
         return "movies";
     }
