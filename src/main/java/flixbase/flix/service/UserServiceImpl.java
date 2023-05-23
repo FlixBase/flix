@@ -76,9 +76,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<ViewDto> excludeUserReviews(Integer userId, List<ViewDto> movieReviews) {
-        for (ViewDto review : movieReviews)
-        if(review.getUser().getId() == userId) {
-            movieReviews.remove(review);
+        for (ViewDto review : movieReviews) {
+            if(review.getUserId() == userId) {
+                movieReviews.remove(review);
+            }
         }
         return movieReviews;
     }

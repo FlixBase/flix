@@ -3,6 +3,8 @@ package flixbase.flix.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import flixbase.flix.entity.User;
 
 import lombok.AllArgsConstructor;
@@ -27,7 +29,8 @@ public class UserDto {
     private List<RoleDto> roles;
     
     private List<GenreDto> favoriteGenres;
-
+    
+    @JsonManagedReference
     private List<ViewDto> views;
     
 
