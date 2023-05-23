@@ -1,6 +1,7 @@
 package flixbase.flix.service;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import flixbase.flix.entity.Role;
 import flixbase.flix.entity.User;
 import flixbase.flix.repository.RoleRepository;
 import flixbase.flix.repository.UserRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,7 +24,6 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
     private RoleRepository roleRepository;
     private MovieService movieService;
-
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, MovieService movieService) {
@@ -74,11 +75,15 @@ public class UserServiceImpl implements UserService {
         return movieService.getTopPopular(10);
     }
 
+    @Transactional
     @Override
     public List<ViewDto> excludeUserReviews(Integer userId, List<ViewDto> movieReviews) {
-        for (ViewDto review : movieReviews)
-        if(review.getUser().getId() == userId) {
-            movieReviews.remove(review);
+        Iterator<ViewDto> iterator = movieReviews.iterator();
+        while (iterator.hasNext()) {
+            ViewDto review = iterator.next();
+            if (review.getUserId() == userId) {
+                iterator.remove();
+            }
         }
         return movieReviews;
     }

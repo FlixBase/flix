@@ -39,23 +39,28 @@ public class MovieController {
 
     @GetMapping({"/getMovieById"})
     public String getMovieById(@RequestParam("movieId") int movieId, Model model, Principal principal) {
-        
         UserDto userDto = getLoggedInUser(principal);
         MovieDto movieDto = movieService.getById(movieId);
         ViewDto userMovieReview = new ViewDto();
 
         for(ViewDto view : userDto.getViews()) {
-            if (view.getMovie().getId() == movieId) {
+            if (view.getMovie().getId() == movieId && !view.getReview().isEmpty()) {
                 userMovieReview = view;
             }
         }
 
+        // if sending over empty dto, preset user and movie id
+        if(userMovieReview.getId() == null) {
+            userMovieReview.setUserId(userDto.getId());
+            userMovieReview.setMovieId(movieId);
+        }
+        
         List<ViewDto> movieReviews = movieService.getReviews(movieId);
-        movieReviews = userService.excludeUserReviews(userDto.getId(), movieReviews);
 
         model.addAttribute("movie", movieDto);
         model.addAttribute("userReview", userMovieReview);
         model.addAttribute("reviews", movieReviews);
+        model.addAttribute("user", userDto);
 
         return "movie";
     }
@@ -69,14 +74,16 @@ public class MovieController {
 
     @GetMapping({"/getTopRatedByGenre"})
     public String getTopRatedByGenre(
-        @RequestParam("genreId") Integer genreId, 
-        @RequestParam("size") int size, 
-        Model model, 
-        Principal principal
-        ) {
+            @RequestParam("genreId") int genreId, 
+            @RequestParam("size") int size, 
+            Model model, 
+            Principal principal) {
+
         List<MovieDto> movies = movieService.getTopByRatedGenre(genreId, size);
+
+        model.addAttribute("user", getLoggedInUser(principal));
         model.addAttribute("movies", movies);
-        return "movie";
+        return "movies";
     }
 
     @GetMapping({"/getTopRatedByAllGenres"})

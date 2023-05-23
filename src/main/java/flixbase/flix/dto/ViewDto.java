@@ -20,10 +20,11 @@ public class ViewDto {
 
     private Boolean favorite;
 
-    private UserDto user;
+    private Integer userId;
 
     private MovieDto movie;
 
+    private Integer movieId;
 
     public ViewDto(View view) {
         if(view.getId() != null) {
@@ -40,11 +41,10 @@ public class ViewDto {
         }
         if(view.getMovie() != null) {
             this.movie = new MovieDto(view.getMovie());
+            this.movieId = view.getMovie().getId();
         }
         if(view.getUser() != null) {
-            this.user = new UserDto(view.getUser());
+            this.userId = view.getUser().getId();
         }
-
     }
-
 }
