@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+import flixbase.flix.dto.GenreDto;
 import flixbase.flix.dto.MovieDto;
 import flixbase.flix.dto.ViewDto;
 import flixbase.flix.entity.Movie;
@@ -92,5 +93,15 @@ public class MovieServiceImpl implements MovieService {
                 movieDto.setViewed(movieExistsInViews);
         }
         return movieDtos;
+    }
+    @Override
+    public List<MovieDto> getRecomended(List<GenreDto> favoriteGenres, Integer limit) {
+
+        List<Integer> favoriteGenreIds =  favoriteGenres.stream()
+                .map(genre -> genre.getId()).collect(Collectors.toList());
+        List<Movie> movies = movieRepository.getRecomended(favoriteGenreIds, limit);
+
+        return movies.stream()
+            .map(movie -> new MovieDto(movie)).collect(Collectors.toList());
     }
 }

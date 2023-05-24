@@ -129,10 +129,9 @@ public class MovieController {
     }
 
     @GetMapping({"/getRecomended"})
-    public String getRecomended(Model model, Principal principal) {
+    public String getRecomended(@RequestParam("size") int size, Model model, Principal principal) {
         UserDto userDto = getLoggedInUser(principal);
-        List<MovieDto> movies = userDto.getViews().stream()
-            .map(view -> view.getMovie()).collect(Collectors.toList());
+        List<MovieDto> movies = movieService.getRecomended(userDto.getFavoriteGenres(), size);
         model.addAttribute("user", userDto);
         model.addAttribute("movies", movies);
         return "movies";
