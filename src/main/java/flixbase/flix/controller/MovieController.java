@@ -47,6 +47,7 @@ public class MovieController {
                 userMovieReview = view;
             }
         }
+       
         if(userMovieReview.getId() == null) {
             userMovieReview.setUserId(userDto.getId());
             userMovieReview.setMovieId(movieId);

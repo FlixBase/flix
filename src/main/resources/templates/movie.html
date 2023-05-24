@@ -70,7 +70,7 @@
               th:action="@{/view/addViewFromMovie}"
               th:object="${userReview}"
               >
-
+              <input type="hidden" th:field="*{id}" />
               <input type="hidden" th:field="*{userId}" />
               <input type="hidden" th:field="*{movieId}" />
 
@@ -79,26 +79,29 @@
                 <input type="checkbox" name="favorite" th:field=*{favorite} />
               </div>
 
-              <div class="rating_stars_wrapper" id="myMovieRating" th:attr="data-averageRating=*{rating}">
+
+              <div class="rating_stars_wrapper" id="myMovieRating" th:attr="data-userRating=*{rating}">
                 <div class="ratingControl">
-            
-                    <input th:value="${5}" th:field="*{rating}" type="radio" id="rating-5" name="rating">
+                  
+                    <input type="radio" id="rating-5" name="rating"  th:field="*{rating}" th:value="${5}">
                     <label class="ratingControl-stars ratingControl-stars--5" for="rating-5">5</label>
             
-                    <input th:value="${4}" th:field="*{rating}" type="radio" id="rating-4" name="rating">
+                    <input type="radio" id="rating-4" name="rating"  th:field="*{rating}" th:value="${4}">
                     <label class="ratingControl-stars ratingControl-stars--4" for="rating-4">4</label>
                    
-                    <input th:value="${3}" th:field="*{rating}" type="radio" id="rating-3" name="rating">
+                    <input type="radio" id="rating-3" name="rating"  th:field="*{rating}" th:value="${3}">
                     <label class="ratingControl-stars ratingControl-stars--3" for="rating-3">3</label>
                    
-                    <input th:value="${2}" th:field="*{rating}" type="radio" id="rating-2" name="rating">
+                    <input type="radio" id="rating-2" name="rating"  th:field="*{rating}" th:value="${2}">
                     <label class="ratingControl-stars ratingControl-stars--2" for="rating-2">2</label>
                     
-                    <input th:value="${1}" th:field="*{rating}" type="radio" id="rating-1" name="rating">
+                    <input type="radio" id="rating-1" name="rating"  th:field="*{rating}" th:value="${1}">
                     <label class="ratingControl-stars ratingControl-stars--1" for="rating-1">1</label>
+
                 </div>
               </div>
-          
+            
+
               <div class="form-group mb-3">
                 <label class="form-label">Review</label>
                 <textarea
