@@ -63,10 +63,12 @@ public class MovieController {
     public String getTopRated(@RequestParam("size") int size, Model model, Principal principal) {
         List<MovieDto> movies = movieService.getTopRated(size);
         UserDto userDto = getLoggedInUser(principal);
+        List<GenreDto> genres = genreService.getGenres();
         movieService.enrichMoviesWithFavorites(userDto.getViews(), movies);
         movieService.enrichMoviesWithViewed(userDto.getViews(), movies);
         model.addAttribute("user", getLoggedInUser(principal));
         model.addAttribute("movies", movies);
+        model.addAttribute("genres", genres);
         return "movies";
     }
 
@@ -78,10 +80,12 @@ public class MovieController {
             Principal principal) {
         List<MovieDto> movies = movieService.getTopByRatedGenre(genreId, size);
         UserDto userDto = getLoggedInUser(principal);
+        List<GenreDto> genres = genreService.getGenres();
         movieService.enrichMoviesWithFavorites(userDto.getViews(), movies);
         movieService.enrichMoviesWithViewed(userDto.getViews(), movies);
         model.addAttribute("user", getLoggedInUser(principal));
         model.addAttribute("movies", movies);
+        model.addAttribute("genres", genres);
         return "movies";
     }
 
