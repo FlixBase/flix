@@ -60,6 +60,7 @@
     display: flex;
     max-width: 300px;
     border-right: 1px solid #bbbbbb;
+    z-index: 5;
 }
 
 .dashboard_nav_container {
@@ -175,3 +176,17 @@
     padding: 0;
 } */
 
+.movie_page_main_bg {
+
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: -5%;
+    right: -5%;
+    width: 110%;
+    height: 110%;
+}

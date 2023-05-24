@@ -28,12 +28,30 @@
         </div>
       </div>
       <div
-        style="background: #393931; position: relative; height: 150vh; flex: 1;"
+        style="position: relative; flex: 1;background: #393931;"
         class="col col-sm-7 col-md-8 col-lg-9"
       >
-        <div class="container-fluid">
-            <h1 th:text="${movie.title}" />
-            <img th:src="@{${'https://image.tmdb.org/t/p/original' + movie.posterUrl}}" />
+        <!-- <div class="movie_page_main_bg" th:style="'background-image: url(https://image.tmdb.org/t/p/original' + ${movie.posterUrl} + ');'"></div> -->
+        <div class="container-fluid" style="background-color: rgba(0,0,0, 0.4); position: relative; height: 100%;">
+            
+            <div class="row" style="padding: 50px;">
+              <div class="col-md-5" style="display: flex;justify-content: flex-end;align-items: flex-end;min-height: 400px;">
+              <img th:src="@{${'https://image.tmdb.org/t/p/original' + movie.posterUrl}}"  style="width: 60%; margin-right: 25px;"/>
+              </div>
+              <div class="col-md-7" style="display: flex;flex-direction: column;justify-content: flex-end;color: white;">
+                <h1 th:text="${movie.title}" />
+                <h6 style="font-weight: 100;font-size: 0.9rem;">Released date: <span th:text="${movie.releaseDate}" /></h6>
+                <p>Average Rating: <span th:text="${movie.voteAverage}" /> </p>
+                <div>
+                  <button th:each="genre : ${movie.genres}" th:text="${genre.name}" class="btn btn-light" style="margin: 5px;"/>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding: 50px;">
+              <p th:text="${movie.description}" style="color: #eee;font-weight: 200;" />
+            </div>
+            
+            
             <div th:each="review : ${reviews}" th:if="${review.userId != user.id}">
                 <p th:if="${review.review}" th:text="${review.review}" />
                 <p th:text="${review.rating}" />
