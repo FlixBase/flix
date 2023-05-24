@@ -33,6 +33,7 @@ public class SpringSecurity {
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/img/**").permitAll()
+                .requestMatchers("/js/**").permitAll()
 
                 .anyRequest().authenticated())
             .formLogin(

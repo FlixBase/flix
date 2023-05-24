@@ -45,11 +45,15 @@
                 </label>
                     <div class="d-flex flex-wrap">
                         <div th:each="genre : ${genres}" class="col-sm-6 col-md-4 m-2">
-                            <input type="checkbox" name="roles"
+                            <input 
                                 th:text="${genre.name}"
                                 th:value="${genre.id}"
                                 th:field="*{genreIds}"
-                                style="margin-right: 10px;"/>
+                                type="checkbox" 
+                                name="genre"
+                                class="form-check-input"
+                                style="margin-right: 10px;"
+                                />
                         </div>
                     </div>
                     
