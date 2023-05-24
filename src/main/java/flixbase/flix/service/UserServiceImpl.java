@@ -13,6 +13,7 @@ import flixbase.flix.dto.UserDto;
 import flixbase.flix.dto.ViewDto;
 import flixbase.flix.entity.Role;
 import flixbase.flix.entity.User;
+import flixbase.flix.repository.GenreRepository;
 import flixbase.flix.repository.RoleRepository;
 import flixbase.flix.repository.UserRepository;
 
@@ -23,13 +24,14 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
     private RoleRepository roleRepository;
     private MovieService movieService;
-
+    private GenreRepository genreRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, MovieService movieService) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, MovieService movieService, GenreRepository genreRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
+        this.genreRepository = genreRepository;
     }
 
     @Override
@@ -62,9 +64,24 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    // @Override
+    // public UserDto update(UserDto userDto) {
+    //     User user = new User(userDto);
+    //     return new UserDto(userRepository.save(user));
+    // }
+
     @Override
     public UserDto update(UserDto userDto) {
-        User user = new User(userDto);
+
+        User user = userRepository.findById(userDto.getId()).get();
+
+        if(userDto.getGenreIds() != null) {
+            user.getFavoriteGenres().clear();
+            for(Integer genreId : userDto.getGenreIds()) {
+                user.addGenre(genreRepository.findById(genreId).get());
+            }
+        }
+
         return new UserDto(userRepository.save(user));
     }
 

@@ -83,6 +83,9 @@ public class User {
 
     // only pass two field, password and rold need to be handled in service layer
     public User(UserDto userDto) {
+        if(userDto.getId() != null) {
+            this.id = userDto.getId();
+        }
         if(userDto.getEmail() != null) {
             this.email = userDto.getEmail();
         }
