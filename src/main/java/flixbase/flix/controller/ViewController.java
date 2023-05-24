@@ -49,7 +49,7 @@ public class ViewController {
         model.addAttribute("user", user);
         if(dbView == null) {
             result.rejectValue("movieId", null, "Movie id not valid");
-            model.addAttribute("message", "Movie id not valid, make sure you have the valid movie id value and save again.");
+            model.addAttribute("message", "Movie id not valid, this is caused by not having a valid movie id or you have already left a review for this movie.");
             model.addAttribute("view", viewDto);
             return "view";
         }

@@ -42,6 +42,11 @@ public class ViewServiceImpl implements ViewService{
         } else {
             return null;
         }
+        for(View view : user.getViews()) {
+            if(viewDto.getMovieId() == view.getMovie().getId()) {
+                return null;
+            }
+        }
         View view = new View(viewDto);
         view.setMovie(movie);
         view.setUser(user);

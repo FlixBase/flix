@@ -38,6 +38,7 @@ public class MovieServiceImpl implements MovieService {
         return movies.stream()
             .map(movie -> new MovieDto(movie)).collect(Collectors.toList());
     }
+    
     @Override
     public List<MovieDto> getTopPopular(Integer topSize) {
         PageRequest pageRequest = PageRequest.of(0, topSize, Sort.by(Sort.Order.desc("popularity")));

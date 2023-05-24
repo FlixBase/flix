@@ -114,7 +114,7 @@ public class MovieController {
         }
         model.addAttribute("user", userDto);
         model.addAttribute("movies", movies);
-        return "movies";
+        return "favorites";
     }
 
     @GetMapping({"/getViewed"})
