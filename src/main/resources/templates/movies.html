@@ -28,28 +28,20 @@
         </div>
       </div>
       <div
-        style="background: #393931; position: relative; height: 150vh; flex: 1;"
+        style="background: #393931; position: relative; flex: 1;"
         class="col col-sm-7 col-md-8 col-lg-9"
       >
         <div class="container-fluid">
-
-          <a th:href="@{/movies/getTopRatedByGenre(genreId=${1}, size=${10})}" class="btn btn-primary" id="genre_1">History</a>
-          <a th:href="@{/movies/getTopRatedByGenre(genreId=${2}, size=${10})}" class="btn btn-primary" id="genre_2">Crime</a>
-          <a th:href="@{/movies/getTopRatedByGenre(genreId=${3}, size=${10})}" class="btn btn-primary" id="genre_3">Fantasy</a>
+          <a th:href="@{/movies/getTopRated(size=${80})}" class="btn btn-primary m-2" id="all_genres" >All Genres</a>
+          <a th:each="genre : ${genres}" th:href="@{/movies/getTopRatedByGenre(genreId=${genre.id}, size=${20})}" class="btn btn-primary m-2" th:text="${genre.name}" th:id="'genre_' + ${genre.id}" />
 
 
-            <h4 th:each="movie : ${movies}">
-                <a  th:href="@{/movies/getMovieById(movieId=${movie.id})}" th:text="${movie.title}"></a>
+          <h4 th:each="movie : ${movies}">
+                <a  th:href="@{/movies/getMovieById(movieId=${movie.id})}">
+                  <img th:src="@{${'https://image.tmdb.org/t/p/original' + movie.posterUrl}}"  style="width:300px; margin-right: 25px;border-radius: 10px;"/>
+                </a>
             </h4>
-            
 
-            <!-- <h1 th:text="${movie.title}" />
-            <img th:src="@{${'https://image.tmdb.org/t/p/original' + movie.posterUrl}}" />
-            <div th:each="review : ${reviews}" th:if="${review.userId != user.id}">
-                <p th:if="${review.review}" th:text="${review.review}" />
-                <p th:text="${review.rating}" />
-
-            </div> -->
         </div>
       </div>
     </div>

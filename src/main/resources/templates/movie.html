@@ -82,22 +82,16 @@
 
               <div class="rating_stars_wrapper" id="myMovieRating" th:attr="data-userRating=*{rating}">
                 <div class="ratingControl">
-                  
-                    <input type="radio" id="rating-5" name="rating"  th:field="*{rating}" th:value="${5}">
+                    <input type="radio" id="rating-5" name="rating"  th:field="*{rating}" th:value="${5}" class="ratingControl-input">
                     <label class="ratingControl-stars ratingControl-stars--5" for="rating-5">5</label>
-            
-                    <input type="radio" id="rating-4" name="rating"  th:field="*{rating}" th:value="${4}">
+                    <input type="radio" id="rating-4" name="rating"  th:field="*{rating}" th:value="${4}" class="ratingControl-input">
                     <label class="ratingControl-stars ratingControl-stars--4" for="rating-4">4</label>
-                   
-                    <input type="radio" id="rating-3" name="rating"  th:field="*{rating}" th:value="${3}">
+                    <input type="radio" id="rating-3" name="rating"  th:field="*{rating}" th:value="${3}" class="ratingControl-input">
                     <label class="ratingControl-stars ratingControl-stars--3" for="rating-3">3</label>
-                   
-                    <input type="radio" id="rating-2" name="rating"  th:field="*{rating}" th:value="${2}">
+                    <input type="radio" id="rating-2" name="rating"  th:field="*{rating}" th:value="${2}" class="ratingControl-input">
                     <label class="ratingControl-stars ratingControl-stars--2" for="rating-2">2</label>
-                    
-                    <input type="radio" id="rating-1" name="rating"  th:field="*{rating}" th:value="${1}">
+                    <input type="radio" id="rating-1" name="rating"  th:field="*{rating}" th:value="${1}" class="ratingControl-input">
                     <label class="ratingControl-stars ratingControl-stars--1" for="rating-1">1</label>
-
                 </div>
               </div>
             
