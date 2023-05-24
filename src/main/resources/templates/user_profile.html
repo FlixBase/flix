@@ -40,15 +40,24 @@
                 >
                 <input type="hidden" th:field="*{id}" />
                 <input type="hidden" th:field="*{username}" />
-                <label class="d-flex flex-column">
-                    My Favorite Genres
-                    <div th:each="genre : ${genres}" style="margin: 10px;">
-                    <input type="checkbox" name="roles"
-                        th:text="${genre.name}"
-                        th:value="${genre.id}"
-                        th:field="*{genreIds}"
-                     style="margin-right: 10px;"/></div>
+                <label>
+                    My Favorite Genres 
                 </label>
+                    <div class="d-flex flex-wrap">
+                        <div th:each="genre : ${genres}" class="col-sm-6 col-md-4 m-2">
+                            <input 
+                                th:text="${genre.name}"
+                                th:value="${genre.id}"
+                                th:field="*{genreIds}"
+                                type="checkbox" 
+                                name="genre"
+                                class="form-check-input"
+                                style="margin-right: 10px;"
+                                />
+                        </div>
+                    </div>
+                    
+               
 
                 <div class="form-group mt-4 mb-2 d-flex justify-content-between">
                     <button class="btn btn-primary" type="submit">Save</button>

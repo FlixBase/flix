@@ -50,6 +50,9 @@ public class View {
     
     // not including user and movie as that need to be handled in service layer
     public View(ViewDto viewDto) {
+      if(viewDto.getId() != null) {
+        this.id = viewDto.getId();
+      }
       if(viewDto.getReview() != null) {
         this.review = viewDto.getReview();
       }

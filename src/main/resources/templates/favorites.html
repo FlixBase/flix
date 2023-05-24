@@ -20,10 +20,10 @@
         <!-- dash navbar container-->
         <div class="container dashboard_nav_container">
           <div
-            th:replace="~{fragments/general_dashboard :: dashboard_nav(active='movies')}"
+            th:replace="~{fragments/general_dashboard :: dashboard_nav(active='favorites')}"
             style="background: yellow"
           >
-            <p>Dashboard Side Nav for Movie</p>
+            <p>Dashboard Side Nav for Favorites</p>
           </div>
         </div>
       </div>
@@ -33,23 +33,11 @@
       >
         <div class="container-fluid">
 
-          <a th:href="@{/movies/getTopRatedByGenre(genreId=${1}, size=${10})}" class="btn btn-primary" id="genre_1">History</a>
-          <a th:href="@{/movies/getTopRatedByGenre(genreId=${2}, size=${10})}" class="btn btn-primary" id="genre_2">Crime</a>
-          <a th:href="@{/movies/getTopRatedByGenre(genreId=${3}, size=${10})}" class="btn btn-primary" id="genre_3">Fantasy</a>
-
-
             <h4 th:each="movie : ${movies}">
                 <a  th:href="@{/movies/getMovieById(movieId=${movie.id})}" th:text="${movie.title}"></a>
             </h4>
             
 
-            <!-- <h1 th:text="${movie.title}" />
-            <img th:src="@{${'https://image.tmdb.org/t/p/original' + movie.posterUrl}}" />
-            <div th:each="review : ${reviews}" th:if="${review.userId != user.id}">
-                <p th:if="${review.review}" th:text="${review.review}" />
-                <p th:text="${review.rating}" />
-
-            </div> -->
         </div>
       </div>
     </div>

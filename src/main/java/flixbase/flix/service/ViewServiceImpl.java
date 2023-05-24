@@ -32,19 +32,37 @@ public class ViewServiceImpl implements ViewService{
 
     @Override
     public ViewDto save(ViewDto viewDto) {
+
+        System.out.println("rating from Service - save: " + viewDto.getRating());
+        System.out.println("View ID from Service - save : " + viewDto.getId());
+        
         Optional<Movie> movieResult = movieRepository.findById(viewDto.getMovieId());
         Optional<User> userResult = userRepository.findById(viewDto.getUserId());
         Movie movie = null;
         User user = null;
+        
         if(movieResult.isPresent() && userResult.isPresent()) {
             movie = movieResult.get();
             user = userResult.get();
         } else {
             return null;
         }
+        // for(View view : user.getViews()) {
+        //     if(viewDto.getMovieId() == view.getMovie().getId()) {
+        //         return null;
+        //     }
+        // }
         View view = new View(viewDto);
         view.setMovie(movie);
         view.setUser(user);
-        return new ViewDto(viewRepository.save(view));
+        System.out.println("View id from Service - new View from DTO: " + view.getId());
+        View dbView = viewRepository.save(view);
+        System.out.println("View id from Service - new View from DB: " + dbView.getId());
+
+        if(user.getViews().contains(dbView)) {
+
+        }
+
+        return new ViewDto(dbView);
     }
 }

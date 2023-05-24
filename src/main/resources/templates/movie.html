@@ -28,19 +28,106 @@
         </div>
       </div>
       <div
-        style="background: #393931; position: relative; height: 150vh; flex: 1;"
+        style="position: relative; flex: 1;background: #393931;"
         class="col col-sm-7 col-md-8 col-lg-9"
       >
-        <div class="container-fluid">
-            <h1 th:text="${movie.title}" />
-            <img th:src="@{${'https://image.tmdb.org/t/p/original' + movie.posterUrl}}" />
+        <div class="container-fluid" style="background-color: rgba(0,0,0, 0.4); position: relative; height: 100%;">
+            
+            <div class="row" style="padding: 50px;">
+              <div class="col-md-5" style="display: flex;justify-content: flex-end;align-items: flex-end;min-height: 400px;">
+              <img th:src="@{${'https://image.tmdb.org/t/p/original' + movie.posterUrl}}"  style="width: 60%; margin-right: 25px;border-radius: 10px;"/>
+              </div>
+              <div class="col-md-7" style="display: flex;flex-direction: column;justify-content: flex-end;color: white;">
+                <h1 th:text="${movie.title}" style="font-size:3.5rem;" />
+                <h6 style="font-weight: 100;font-size: 0.9rem;">Released date: <span th:text="${movie.releaseDate}" /></h6>
+
+                <div class="movie_stars_wrapper" id="movieAvgRating" th:attr="data-averageRating=${movie.voteAverage}">
+                  <div class="rating-stars rating-stars--5" id="rating-50" >5</div>
+                  <div class="rating-stars rating-stars--45 rating-stars--half" id="rating-45">45</div>
+                  <div class="rating-stars rating-stars--4" id="rating-40" >4</div>
+                  <div class="rating-stars rating-stars--35 rating-stars--half" id="rating-35" >35</div>
+                  <div class="rating-stars rating-stars--3" id="rating-30">3</div>
+                  <div class="rating-stars rating-stars--25 rating-stars--half" id="rating-25" >25</div>
+                  <div class="rating-stars rating-stars--2" id="rating-20" >2</div>
+                  <div class="rating-stars rating-stars--15 rating-stars--half"  id="rating-15" >15</div> 
+                  <div class="rating-stars rating-stars--1" id="rating-10" >1</div>
+                  <div class="rating-stars rating-stars--05 rating-stars--half" id="rating-5">05</div>
+                </div>
+          
+                <div>
+                  <button th:each="genre : ${movie.genres}" th:text="${genre.name}" class="btn btn-light" style="margin: 5px;"/>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding: 20px 50px;">
+              <p th:text="${movie.description}" style="color: #eee;font-weight: 200;" />
+            </div>
+            <div style="margin: 20px 50px;padding: 40px;background-color: white;border-radius: 10px;">
+              <p th:text="${message}" />
+              <form
+              method="post"
+              role="form"
+              th:action="@{/view/addViewFromMovie}"
+              th:object="${userReview}"
+              >
+              <input type="hidden" th:field="*{id}" />
+              <input type="hidden" th:field="*{userId}" />
+              <input type="hidden" th:field="*{movieId}" />
+
+              <div class="form-group mb-3">
+                <label class="form-label">Favorite</label>
+                <input type="checkbox" name="favorite" th:field=*{favorite} />
+              </div>
+
+
+              <div class="rating_stars_wrapper" id="myMovieRating" th:attr="data-userRating=*{rating}">
+                <div class="ratingControl">
+                  
+                    <input type="radio" id="rating-5" name="rating"  th:field="*{rating}" th:value="${5}">
+                    <label class="ratingControl-stars ratingControl-stars--5" for="rating-5">5</label>
+            
+                    <input type="radio" id="rating-4" name="rating"  th:field="*{rating}" th:value="${4}">
+                    <label class="ratingControl-stars ratingControl-stars--4" for="rating-4">4</label>
+                   
+                    <input type="radio" id="rating-3" name="rating"  th:field="*{rating}" th:value="${3}">
+                    <label class="ratingControl-stars ratingControl-stars--3" for="rating-3">3</label>
+                   
+                    <input type="radio" id="rating-2" name="rating"  th:field="*{rating}" th:value="${2}">
+                    <label class="ratingControl-stars ratingControl-stars--2" for="rating-2">2</label>
+                    
+                    <input type="radio" id="rating-1" name="rating"  th:field="*{rating}" th:value="${1}">
+                    <label class="ratingControl-stars ratingControl-stars--1" for="rating-1">1</label>
+
+                </div>
+              </div>
+            
+
+              <div class="form-group mb-3">
+                <label class="form-label">Review</label>
+                <textarea
+                  class="form-control"
+                  id="review"
+                  name="review"
+                  placeholder="Enter review"
+                  th:field="*{review}"
+                ></textarea>
+              </div>
+              <div class="form-group mt-4 mb-2 d-flex justify-content-between">
+                <button class="btn btn-primary" type="submit">Save</button>
+               
+              </div>
+            </form>            
+            
             <div th:each="review : ${reviews}" th:if="${review.userId != user.id}">
                 <p th:if="${review.review}" th:text="${review.review}" />
                 <p th:text="${review.rating}" />
 
             </div>
+          </div>
         </div>
       </div>
     </div>
+    <script src="/js/handleMovie.js" type="application/javascript"></script>
+
   </body>
 </html>
