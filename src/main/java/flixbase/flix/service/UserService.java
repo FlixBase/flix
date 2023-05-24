@@ -1,10 +1,6 @@
 package flixbase.flix.service;
 
-import java.util.List;
-
-import flixbase.flix.dto.MovieDto;
 import flixbase.flix.dto.UserDto;
-import flixbase.flix.dto.ViewDto;
 
 public interface UserService {
     
@@ -15,8 +11,4 @@ public interface UserService {
     UserDto findUserByEmail(String email);
 
     UserDto update(UserDto userDto);
-
-    List<MovieDto> getUserRecomendations(Integer userId);
-
-    List<ViewDto> excludeUserReviews(Integer userId, List<ViewDto> movieReviews);
 }
