@@ -24,5 +24,5 @@ public interface MovieService {
 
     List<ViewDto> getReviews(Integer movieId);
 
-    List<MovieDto> getRecomended(List<GenreDto> favoriteGenres, Integer limit);
+    List<MovieDto> getRecomended(List<GenreDto> favoriteGenres, Integer limit, List<ViewDto> userViews);
 }
