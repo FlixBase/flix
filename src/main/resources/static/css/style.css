@@ -193,15 +193,14 @@
 
 
 
-.movie_stars_wrapper {
+.movie_stars_wrapper, .movie_review_stars_wrapper {
     position: relative;
     width: 125px;
     height: 25px;
+  }
+
+  .movie_stars_wrapper{
     margin: 10px 0 20px;
-    /* -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; */
   }
   .rating-stars {
     position: absolute;
@@ -267,11 +266,8 @@
     position: relative;
     width: 200px;
     height: 40px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    margin: 0 auto;
+    float:right;
+    margin-bottom:20px;
   }
   .ratingControl input {
     visibility: hidden;
@@ -324,7 +320,7 @@
     padding: 50px;
   }
   .user-review-wrapper {
-    background-color: white; 
+    background-color: #f0e7e7; 
     border-radius:10px; 
     position: relative;
     padding:40px 50px;

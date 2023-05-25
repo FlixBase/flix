@@ -32,7 +32,7 @@
       >
         <div class="container-fluid" >
 
-          <div th:each="view : ${user.views}" th:if="${view.review != ''}" class="user-review-wrapper">
+          <div th:each="view : ${user.views}" th:if="${view.review != null && view.review != ''}" class="user-review-wrapper">
             <div class="user-review-poster-wrapper">
               <a th:href="@{/movies/getMovieById(movieId=${view.movie.id})}"><img th:src="@{${'https://image.tmdb.org/t/p/original' + view.movie.posterUrl}}"  style="width: 100%;"/></a>
             </div>

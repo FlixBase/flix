@@ -57,14 +57,14 @@
                   <button th:each="genre : ${movie.genres}" th:text="${genre.name}" class="btn btn-light" style="margin: 10px 5px 5px;"/>
                   <br />
 
-                  <!-- <button th:if="${userReview?.favorite}" class="btn btn-outline-light" style="margin: 5px;">
+                  <button th:if="${userReview?.favorite}" id="saveToFav" class="btn btn-secondary" style="margin: 5px;" th:attr="data-viewid=${userReview.id}, data-movieid=${movie.id}, data-userid=${user.id}">
                     <svg aria-label="MyFav" style="margin-right: 5px;" color="rgb(255, 48, 64)" fill="rgb(255, 48, 64)" height="20" role="img" viewBox="0 0 48 48" width="24"><title>Unsave</title><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
                     My Favorite
                   </button>
-                  <button th:unless="${userReview?.favorite}"  class="btn btn-success" style="margin: 10px 5px 5px;">
+                  <button th:unless="${userReview?.favorite}" id="saveToFav"  class="btn btn-success" style="margin: 10px 5px 5px;"  th:attr="data-viewid=${userReview.id}, data-movieid=${movie.id}, data-userid=${user.id}">
                     <svg aria-label="SaveToMyFav"  style="margin-right: 5px;"  color="rgb(230, 230, 230)" fill="rgb(230, 230, 230)" height="20" role="img" viewBox="0 0 24 24" width="24"><title>Save</title><path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path></svg>
                     Save to My Favorites
-                  </button> -->
+                  </button>
 
                 </div>
                 
@@ -73,7 +73,7 @@
             <div class="row" style="padding: 20px 50px;">
               <p th:text="${movie.description}" style="color: #eee;font-weight: 200;" />
             </div>
-            <div style="margin: 20px 50px;padding: 40px;background-color: white;border-radius: 10px;">
+            <div style="margin: 20px 50px;padding: 30px 40px;background-color: #393939;border-radius: 10px;">
               <p th:text="${message}" />
               <form
               method="post"
@@ -85,13 +85,28 @@
               <input type="hidden" th:field="*{userId}" />
               <input type="hidden" th:field="*{movieId}" />
 
-              <div class="form-group mb-3">
+              <!-- <div class="form-group mb-3">
                 <label class="form-label">Favorite</label>
                 <input type="checkbox" name="favorite" th:field=*{favorite} />
-              </div>
+              </div> -->
+              
+              <input type="hidden" th:field="*{favorite}" />
 
-              <div class="rating_stars_wrapper" id="myMovieRating" th:attr="data-userRating=*{rating}">
-                <div class="ratingControl">
+              
+          
+              <div class="form-group mb-3">
+                <!-- <label class="form-label">Review</label> -->
+                <textarea
+                  class="form-control"
+                  id="review"
+                  name="review"
+                  placeholder="Enter review"
+                  th:field="*{review}"
+                ></textarea>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="rating_stars_wrapper" id="myMovieRating" th:attr="data-userRating=*{rating}" style="margin:0;">
+                  <div class="ratingControl">
                     <input type="radio" id="rating-5" name="rating"  th:field="*{rating}" th:value="${5}" class="ratingControl-input">
                     <label class="ratingControl-stars ratingControl-stars--5" for="rating-5">5</label>
                     <input type="radio" id="rating-4" name="rating"  th:field="*{rating}" th:value="${4}" class="ratingControl-input">
@@ -102,28 +117,41 @@
                     <label class="ratingControl-stars ratingControl-stars--2" for="rating-2">2</label>
                     <input type="radio" id="rating-1" name="rating"  th:field="*{rating}" th:value="${1}" class="ratingControl-input">
                     <label class="ratingControl-stars ratingControl-stars--1" for="rating-1">1</label>
+                  </div>
                 </div>
+                <div class="form-group d-flex justify-content-between">
+                  <button class="btn btn-primary" type="submit">Save</button>
+                 </div>
               </div>
-          
-              <div class="form-group mb-3">
-                <label class="form-label">Review</label>
-                <textarea
-                  class="form-control"
-                  id="review"
-                  name="review"
-                  placeholder="Enter review"
-                  th:field="*{review}"
-                ></textarea>
-              </div>
-              <div class="form-group mt-4 mb-2 d-flex justify-content-between">
-                <button class="btn btn-primary" type="submit">Save</button>
-               
-              </div>
+              
             </form>            
-            <div th:each="review : ${reviews}" th:if="${review.userId != user.id}">
-                <p th:if="${review.review}" th:text="${review.review}" />
-                <p th:text="${review.rating}" />
+          
+          </div>  
+          <div class="row" style="padding: 55px;">
+            <div class="col col-sm-9">
+              <div th:each="review : ${reviews}" th:if="${review.userId != user.id && review.review != ''} " style="margin-bottom: 50px;padding: 40px;background-color: #6a6a6a; color: white; border-radius: 10px;position:relative;">
+                  <div class="d-flex justify-content-center align-items-center" style="width: 50px; height: 50px; position:absolute; left: 50px; bottom: -25px; border-radius: 50%; background: cornflowerblue;">
+                    <h3 th:text="${#strings.substring(review.username, 0, 1)}" style="font-weight: 900; text-transform:uppercase;color:white;margin:0;padding:0;"/>
+                  </div>
+                    <p th:text="${review.review}" style="font-size:0.95rem;" />
+                    <span style="float:right;font-style:italic;font-size:0.8rem;font-weight:300;">by  <span style="font-weight:500;" th:text="${review.username}" /> </span>
+                  <div class="movie_review_stars_wrapper" id="movieUserRatings" th:attr="data-userrating=${review.rating}, data-viewid=${review.id}">
+                    <div class="rating-stars rating-stars--5" th:id="${review.id} + '_rating-50'">5</div>
+                    <div class="rating-stars rating-stars--4" th:id="${review.id} + '_rating-40'">4</div>
+                    <div class="rating-stars rating-stars--3" th:id="${review.id} + '_rating-30'">3</div>
+                    <div class="rating-stars rating-stars--2" th:id="${review.id} + '_rating-20'">2</div>
+                    <div class="rating-stars rating-stars--1" th:id="${review.id} + '_rating-10'">1</div>
+                  </div>
+              </div> 
 
+            </div>
+            <div class="col col-sm-3" style="padding-left:30px;">
+              <h4 style="color:white;">Also check out these movies</h4>
+              <div th:each="otherMovie : ${otherMovies}" th:if="${otherMovie.id != movie.id}" class="p-2 w-100">
+                <a th:href="@{/movies/getMovieById(movieId=${otherMovie.id})}" class="d-flex h-100">
+                  <img th:src="@{${'https://image.tmdb.org/t/p/original' + otherMovie.posterUrl}}" class="movies_movie_poster"/>
+                </a>
+              </div>
             </div>
           </div>
         </div>

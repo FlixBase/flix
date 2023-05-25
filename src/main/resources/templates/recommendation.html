@@ -23,24 +23,27 @@
             th:replace="~{fragments/general_dashboard :: dashboard_nav(active='recommendations')}"
             style="background: yellow"
           >
-            <p>Dashboard Side Nav for Top Picks</p>
+            <p>Dashboard Side Nav for Movie</p>
           </div>
         </div>
       </div>
       <div
-      class="col col-sm-7 col-md-8 col-lg-9 dashboare_main_container_wrapper"
-    >
+        class="col col-sm-7 col-md-8 col-lg-9 dashboare_main_container_wrapper"
+      >
         <div class="container-fluid">
-          <p>Numbers of recommendated movies : <span th:text="${#lists.size(movies)}"/></p>
-
-            <div >
-                <h4 th:each="movie : ${movies}">
-                    <a  th:href="@{/movies/getMovieById(movieId=${movie.id})}" th:text="${movie.title}" />
-                </h4>
-            </div>            
+          <div class="d-flex flex-wrap mt-5" >
+            <div th:each="movie : ${movies}" class="p-2 movies_movie_poster_wrapper">
+                <a th:href="@{/movies/getMovieById(movieId=${movie.id})}" class="d-flex h-100">
+                  <img th:src="@{${'https://image.tmdb.org/t/p/original' + movie.posterUrl}}" class="movies_movie_poster"/>
+                </a>
+              </div>
+          </div>
+          
 
         </div>
       </div>
     </div>
+    <script src="/js/handleMoviesGenres.js" type="application/javascript"></script>
+
   </body>
 </html>
