@@ -365,5 +365,16 @@
       font-weight: 300;
   }
 
+  .movies_movie_poster_wrapper {
+    width: 20%;
+    min-width: 125px;
+
+  }
+  img.movies_movie_poster {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #00000060;
+  }
+
 
 

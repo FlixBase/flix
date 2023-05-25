@@ -90,7 +90,6 @@
                 <input type="checkbox" name="favorite" th:field=*{favorite} />
               </div>
 
-
               <div class="rating_stars_wrapper" id="myMovieRating" th:attr="data-userRating=*{rating}">
                 <div class="ratingControl">
                     <input type="radio" id="rating-5" name="rating"  th:field="*{rating}" th:value="${5}" class="ratingControl-input">
@@ -105,8 +104,7 @@
                     <label class="ratingControl-stars ratingControl-stars--1" for="rating-1">1</label>
                 </div>
               </div>
-            
-
+          
               <div class="form-group mb-3">
                 <label class="form-label">Review</label>
                 <textarea
@@ -122,7 +120,6 @@
                
               </div>
             </form>            
-            
             <div th:each="review : ${reviews}" th:if="${review.userId != user.id}">
                 <p th:if="${review.review}" th:text="${review.review}" />
                 <p th:text="${review.rating}" />

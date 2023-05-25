@@ -119,7 +119,7 @@ public class MovieController {
         }
         model.addAttribute("user", userDto);
         model.addAttribute("movies", movies);
-        return "favorites";
+        return "movies_2";
     }
 
     @GetMapping({"/getViewed"})
@@ -139,7 +139,7 @@ public class MovieController {
         List<MovieDto> movies = movieService.getRecomended(userDto.getFavoriteGenres(), size);
         model.addAttribute("user", userDto);
         model.addAttribute("movies", movies);
-        return "recommendation";
+        return "movies_2";
     }
 
     private UserDto getLoggedInUser(Principal principal) {
