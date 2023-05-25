@@ -61,7 +61,6 @@ public class ViewServiceImpl implements ViewService{
 
     @Override
     public ViewDto saveFav(ViewDto viewDto, UserDto userDto) {
-        
         Optional<Movie> movieResult = movieRepository.findById(viewDto.getMovieId());
         Movie movie = null;
         View view = null;
