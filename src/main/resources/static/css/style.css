@@ -327,16 +327,18 @@
     background-color: white; 
     border-radius:10px; 
     position: relative;
-    padding:50px;
+    padding:40px 50px;
     margin: 25px 0;
     width: 70%;
-
+  }
+  .user-review-wrapper:nth-child(odd) {
+    float:left;
   }
   .user-review-wrapper:nth-child(even) {
     float:right;
   }
 
-  .user-review-movie-wrapper {
+  .user-review-poster-wrapper {
     width: 100px; 
     height: 100px; 
     overflow: hidden; 
@@ -345,11 +347,22 @@
     bottom: -50px; 
   }
 
-  .user-review-movie-wrapper:nth-child(odd) {
+  .user-review-wrapper:nth-child(odd) > .user-review-poster-wrapper {
     left: 50px;
   }
-  .user-review-movie-wrapper:nth-child(odd) {
+  .user-review-wrapper:nth-child(even) > .user-review-poster-wrapper {
     right: 50px;
+  }
+  .user-review-wrapper a .review-title, .user-review-wrapper a {
+    text-decoration: none;
+    color: #666;
+  }
+  .user-review-wrapper a .review-title:hover {
+    color:#333;
+  }
+  .user-review-wrapper .review-text {
+        font-size: 0.9rem;
+      font-weight: 300;
   }
 
 

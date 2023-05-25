@@ -33,11 +33,26 @@
         <div class="container-fluid" >
 
           <div th:each="view : ${user.views}" th:if="${view.review != ''}" class="user-review-wrapper">
-            <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;position: absolute; bottom: -50px; left: 50ps;">
-              <img th:src="@{${'https://image.tmdb.org/t/p/original' + view.movie.posterUrl}}"  style="width: 100%;"/>
+            <div class="user-review-poster-wrapper">
+              <a th:href="@{/movies/getMovieById(movieId=${view.movie.id})}"><img th:src="@{${'https://image.tmdb.org/t/p/original' + view.movie.posterUrl}}"  style="width: 100%;"/></a>
             </div>
-            <h2 th:text="${view.movie.title}" />
-            <p th:text="${view.review}" />
+            <div class="d-flex justify-content-between">
+              <a th:href="@{/movies/getMovieById(movieId=${view.movie.id})}"><h4 th:text="${view.movie.title}" class="review-title"/></a>
+
+              <div class="movie_stars_wrapper" id="movieAvgRating" th:attr="data-userrating=${view.rating}, data-viewid=${view.id}">
+                <div class="rating-stars rating-stars--5" th:id="${view.id} + '_rating-50'">5</div>
+                <div class="rating-stars rating-stars--4" th:id="${view.id} + '_rating-40'">4</div>
+                <div class="rating-stars rating-stars--3" th:id="${view.id} + '_rating-30'">3</div>
+                <div class="rating-stars rating-stars--2" th:id="${view.id} + '_rating-20'">2</div>
+                <div class="rating-stars rating-stars--1" th:id="${view.id} + '_rating-10'">1</div>
+              </div>
+
+            </div>
+            
+
+
+
+            <p th:text="${view.review}" class="review-text" />
             
           </div>
          
@@ -45,5 +60,7 @@
         </div>
       </div>
     </div>
+    <script src="/js/handleUserReview.js" type="application/javascript"></script>
+
   </body>
 </html>
