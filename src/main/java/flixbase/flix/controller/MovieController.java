@@ -94,10 +94,9 @@ public class MovieController {
 
     @GetMapping({"/getTopRatedByAllGenres"})
     public String getTopRatedByAllGenres (@RequestParam("size") int size, Model model, Principal principal) {
-        List<GenreDto> genreDtos = genreService.getGenres();
-        Hashtable <String, List<MovieDto>> genresMovies = new Hashtable<>(); 
         UserDto userDto = getLoggedInUser(principal);
-
+        List<GenreDto> genreDtos = genreService.getGenresSortedByMovieNumber();
+        Hashtable <String, List<MovieDto>> genresMovies = new Hashtable<>(); 
         for (GenreDto genreDto : genreDtos) {
             List<MovieDto> movies = movieService.getTopByRatedGenre(genreDto.getId(), size);
             movieService.enrichMoviesWithFavorites(userDto.getViews(), movies);
@@ -107,6 +106,42 @@ public class MovieController {
         model.addAttribute("user", getLoggedInUser(principal));
         model.addAttribute("genresMovies", genresMovies);
         return "movie";
+    }
+
+    @GetMapping({"/getTopRatedByUserGenres"})
+    public String getTopRatedByUserGenres(
+            @RequestParam("genresNumber") int genresNumber, 
+            @RequestParam("moviesPerGenre") int moviesPerGenre, 
+            Model model, 
+            Principal principal) {
+                
+        Hashtable <String, List<MovieDto>> genresMovies = new Hashtable<>(); 
+        UserDto userDto = getLoggedInUser(principal);
+        List<GenreDto> userGenreDtos = userDto.getFavoriteGenres();
+
+        for (GenreDto genreDto : userGenreDtos) {
+            List<MovieDto> movies = movieService.getTopByRatedGenre(genreDto.getId(), moviesPerGenre);
+            movieService.enrichMoviesWithFavorites(userDto.getViews(), movies);
+            movieService.enrichMoviesWithViewed(userDto.getViews(), movies);
+            genresMovies.put(genreDto.getName(), movies);
+        }
+
+        if (userGenreDtos.size() < genresNumber) {
+            List<GenreDto> allGenreDtos = genreService.getGenresSortedByMovieNumber();
+            int genresToAddNumber = genresNumber - userGenreDtos.size();
+            for (GenreDto genreDto : allGenreDtos) {
+                if (!userGenreDtos.contains(genreDto) && genresToAddNumber > 0) {
+                    List<MovieDto> movies = movieService.getTopByRatedGenre(genreDto.getId(), moviesPerGenre);
+                    movieService.enrichMoviesWithFavorites(userDto.getViews(), movies);
+                    movieService.enrichMoviesWithViewed(userDto.getViews(), movies);
+                    genresMovies.put(genreDto.getName(), movies);
+                    genresToAddNumber--;
+                }
+            }
+        }
+        model.addAttribute("user", getLoggedInUser(principal));
+        model.addAttribute("genresMovies", genresMovies);
+        return "user";
     }
 
     @GetMapping({"/getFavorites"})
