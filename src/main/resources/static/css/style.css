@@ -109,6 +109,7 @@
     font-weight: 400;
     display: flex;
     align-items: center;
+    min-height:60px;
 }
 
 .dash_nav_item a.nav_link:hover {
