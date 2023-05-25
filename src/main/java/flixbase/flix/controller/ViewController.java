@@ -89,6 +89,15 @@ public class ViewController {
         return "redirect:/movies/getMovieById";
     }
 
+    @GetMapping("/userReviews")
+    public String getUserReviews(Model model, Principal principal) {
+        UserDto user = getPrincipal(principal);
+        model.addAttribute("user", user);
+        model.addAttribute("reviews", user.getViews());
+
+        return "reviews";
+
+    }
 
     private UserDto getPrincipal(Principal principal) {
         return userService.findUserByUsername(principal.getName());

@@ -139,7 +139,7 @@ public class MovieController {
         List<MovieDto> movies = movieService.getRecomended(userDto.getFavoriteGenres(), size);
         model.addAttribute("user", userDto);
         model.addAttribute("movies", movies);
-        return "movies";
+        return "recommendation";
     }
 
     private UserDto getLoggedInUser(Principal principal) {
