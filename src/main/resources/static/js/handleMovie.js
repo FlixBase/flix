@@ -11,7 +11,7 @@ const getStarRating = (initialAvgRating) => {
 
 const movieStarRating = getStarRating(movieAvgRating);
 const ratingString = "rating-" + movieStarRating*10;
-document.getElementById(ratingString).classList.add("active");
+document.getElementById(ratingString)?.classList.add("active");
 
 
 // handling user star rating
