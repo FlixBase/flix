@@ -28,16 +28,31 @@
         </div>
       </div>
       <div
-        style="background: #393931; position: relative; flex: 1;"
-        class="col col-sm-7 col-md-8 col-lg-9"
+        class="col col-sm-7 col-md-8 col-lg-9 dashboare_main_container_wrapper"
       >
-        <div class="container-fluid">
-          <p>Numbers of reviews: <span th:text="${#lists.size(user.views)}"/></p>
+        <div class="container-fluid" >
 
-          <div th:each="view : ${user.views}" th:if="${view.review != ''}">
+          <div th:each="view : ${user.views}" th:if="${view.review != null && view.review != ''}" class="user-review-wrapper">
+            <div class="user-review-poster-wrapper">
+              <a th:href="@{/movies/getMovieById(movieId=${view.movie.id})}"><img th:src="@{${'https://image.tmdb.org/t/p/original' + view.movie.posterUrl}}"  style="width: 100%;"/></a>
+            </div>
+            <div class="d-flex justify-content-between">
+              <a th:href="@{/movies/getMovieById(movieId=${view.movie.id})}"><h4 th:text="${view.movie.title}" class="review-title"/></a>
+
+              <div class="movie_stars_wrapper" id="movieAvgRating" th:attr="data-userrating=${view.rating}, data-viewid=${view.id}">
+                <div class="rating-stars rating-stars--5" th:id="${view.id} + '_rating-50'">5</div>
+                <div class="rating-stars rating-stars--4" th:id="${view.id} + '_rating-40'">4</div>
+                <div class="rating-stars rating-stars--3" th:id="${view.id} + '_rating-30'">3</div>
+                <div class="rating-stars rating-stars--2" th:id="${view.id} + '_rating-20'">2</div>
+                <div class="rating-stars rating-stars--1" th:id="${view.id} + '_rating-10'">1</div>
+              </div>
+
+            </div>
             
-            <h2 th:text="${view.movie.title}" />
-            <p th:text="${view.review}" />
+
+
+
+            <p th:text="${view.review}" class="review-text" />
             
           </div>
          
@@ -45,5 +60,7 @@
         </div>
       </div>
     </div>
+    <script src="/js/handleUserReview.js" type="application/javascript"></script>
+
   </body>
 </html>

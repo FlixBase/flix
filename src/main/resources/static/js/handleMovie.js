@@ -36,4 +36,44 @@ const unCheckAllStars = () => {
 }
 
 
+// handle add to favorite
+const base = "http://localhost:8080/";
 
+const headers = {
+    'Content-Type':'application/json'
+}
+
+const saveToFav = document.getElementById("saveToFav");
+
+saveToFav.addEventListener("click", () => {
+   saveToFavorite();
+})
+
+async function saveToFavorite() {
+    const obj = {
+        id : saveToFav.dataset.viewid ? saveToFav.dataset.viewid : null,
+        userId : saveToFav.dataset.userid,
+        movieId : saveToFav.dataset.movieid 
+    }
+    const response = await fetch(`${base}api/addToFavorite`, {
+        method: "POST",
+        body: JSON.stringify(obj), 
+        headers: headers
+    })
+    .catch(error => console.error(error.message))
+    console.log(response);
+    if(response.status == 200) {
+        window.location.href=`${base}movies/getMovieById?movieId=${saveToFav.dataset.movieid}`
+    }
+}
+
+// handle reviews by other users
+
+const reviewStarWrappers = document.getElementsByClassName("movie_review_stars_wrapper");
+window.onload = function() {
+    [...reviewStarWrappers].map(wrapper => {
+        const viewId = wrapper.dataset.viewid;
+        const userRating = wrapper.dataset.userrating * 10;
+        document.getElementById(viewId + "_rating-" + userRating).classList.add("active");
+    })
+}

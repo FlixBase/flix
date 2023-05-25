@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import flixbase.flix.dto.UserDto;
 import flixbase.flix.dto.ViewDto;
 import flixbase.flix.entity.Movie;
 
@@ -47,11 +48,7 @@ public class ViewServiceImpl implements ViewService{
         } else {
             return null;
         }
-        // for(View view : user.getViews()) {
-        //     if(viewDto.getMovieId() == view.getMovie().getId()) {
-        //         return null;
-        //     }
-        // }
+        viewDto.setReview(viewDto.getReview().trim());
         View view = new View(viewDto);
         view.setMovie(movie);
         view.setUser(user);
@@ -59,10 +56,38 @@ public class ViewServiceImpl implements ViewService{
         View dbView = viewRepository.save(view);
         System.out.println("View id from Service - new View from DB: " + dbView.getId());
 
-        if(user.getViews().contains(dbView)) {
-
-        }
-
         return new ViewDto(dbView);
     }
+
+    @Override
+    public ViewDto saveFav(ViewDto viewDto, UserDto userDto) {
+        
+        Optional<Movie> movieResult = movieRepository.findById(viewDto.getMovieId());
+        Movie movie = null;
+        View view = null;
+        if(movieResult.isPresent()) {
+            movie = movieResult.get();
+        } else {
+            return null;
+        }
+        if(viewDto.getId() != null) {
+            view = viewRepository.findById(viewDto.getId()).get();
+        }
+        if(view == null) {
+            view = new View();
+            view.setMovie(movie);
+            view.setUser(userRepository.findById(userDto.getId()).get());
+            view.setFavorite(true);
+        } else {
+            if(view.getFavorite() == null) {
+                view.setFavorite(true);
+            } else {
+                view.setFavorite(!view.getFavorite());
+            }
+        }   
+        System.out.println("view id from service saveFav: " + view.getId());
+        return new ViewDto(viewRepository.save(view));
+    }
+
+    
 }

@@ -1,5 +1,7 @@
 package flixbase.flix.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import flixbase.flix.entity.View;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +22,7 @@ public class ViewDto {
 
     private Boolean favorite;
     
+    @JsonBackReference
     private UserDto user;
     
     private MovieDto movie;
@@ -27,6 +30,8 @@ public class ViewDto {
     private Integer userId;
 
     private Integer movieId;
+
+    private String username;
 
     public ViewDto(View view) {
         if(view.getId() != null) {
@@ -47,6 +52,7 @@ public class ViewDto {
         }
         if(view.getUser() != null) {
             this.userId = view.getUser().getId();
+            this.username = view.getUser().getUsername();
         }
 
     }

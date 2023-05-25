@@ -53,10 +53,12 @@ public class MovieController {
             userMovieReview.setMovieId(movieId);
         }
         List<ViewDto> movieReviews = movieService.getReviews(movieId);
+        List<MovieDto> otherMovies = movieService.getTopByRatedGenre(movieDto.getGenres().get(0).getId(),3);
         model.addAttribute("movie", movieDto);
         model.addAttribute("userReview", userMovieReview);
         model.addAttribute("reviews", movieReviews);
         model.addAttribute("user", userDto);
+        model.addAttribute("otherMovies", otherMovies);
         return "movie";
     }
 

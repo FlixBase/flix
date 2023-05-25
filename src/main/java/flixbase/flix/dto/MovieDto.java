@@ -44,6 +44,8 @@ public class MovieDto {
 
     private List<GenreDto> genres;
 
+    private List<ViewDto> views;
+
     private Boolean favorite;
 
     private Boolean viewed;
