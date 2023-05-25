@@ -153,12 +153,17 @@
     flex:1;
 }
 
-.dashboard_nav_user .user_name p {
+.dashboard_nav_user .user_name a {
+  font-weight: 200;
+}
+
+.dashboard_nav_user .user_name p,.dashboard_nav_user .user_name p a  {
     margin: 0;
     color: white;
     text-transform: uppercase;
     font-weight: 500;
 }
+
 
 .user_icon h1 {
     font-weight: 900;
