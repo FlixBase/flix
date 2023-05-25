@@ -96,11 +96,13 @@ public class MovieServiceImpl implements MovieService {
         return movieDtos;
     }
     @Override
-    public List<MovieDto> getRecomended(List<GenreDto> favoriteGenres, Integer limit) {
+    public List<MovieDto> getRecomended(List<GenreDto> favoriteGenres, Integer limit, List<ViewDto> userViews) {
 
         List<Integer> favoriteGenreIds =  favoriteGenres.stream()
                 .map(genre -> genre.getId()).collect(Collectors.toList());
-        List<Movie> movies = movieRepository.getRecomended(favoriteGenreIds, limit);
+        List<Integer> viewedMovieIds =  userViews.stream()
+                .map(view -> view.getMovieId()).collect(Collectors.toList());
+        List<Movie> movies = movieRepository.getRecomended(favoriteGenreIds, limit, viewedMovieIds);
 
         return movies.stream()
             .map(movie -> new MovieDto(movie)).collect(Collectors.toList());

@@ -19,7 +19,9 @@ public interface MovieRepository  extends JpaRepository<Movie, Integer> {
     List<Movie> findByGenres_Id(Integer genreId, PageRequest pageRequest);
 
     @Query("""
-        SELECT m FROM Movie m JOIN m.genres g WHERE g.id IN :favoriteGenreIds GROUP BY m ORDER BY COUNT(g) DESC, m.voteAverage DESC LIMIT :limit
+        SELECT m FROM Movie m JOIN m.genres g WHERE g.id IN :favoriteGenreIds 
+            AND m.id NOT IN :viewedMovieIds
+            GROUP BY m ORDER BY COUNT(g) DESC, m.voteAverage DESC LIMIT :limit
         """)
-    List<Movie> getRecomended(@Param("favoriteGenreIds") List<Integer> favoriteGenreIds, @Param("limit") Integer limit);
+    List<Movie> getRecomended(@Param("favoriteGenreIds") List<Integer> favoriteGenreIds, @Param("limit") Integer limit,  @Param("viewedMovieIds") List<Integer> viewedMovieIds);
 }
