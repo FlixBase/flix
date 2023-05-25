@@ -150,7 +150,7 @@ public class MovieController {
         List<MovieDto> movies = new ArrayList<>();
 
         for (ViewDto viewDto : userDto.getViews()) {
-            if (viewDto.getFavorite()) {
+            if (viewDto.getFavorite() != null) {
                 movies.add(viewDto.getMovie());
             }
         }
