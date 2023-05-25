@@ -28,21 +28,13 @@
         </div>
       </div>
       <div
-        style="background: #393931; position: relative; height: 150vh; flex: 1;"
-        class="col col-sm-7 col-md-8 col-lg-9"
-      >
+      class="col col-sm-7 col-md-8 col-lg-9 dashboare_main_container_wrapper"
+    >
         <div class="container-fluid">
 
             <h4 th:each="movie : ${movies}">
                 <a  th:href="@{/movies/getMovieById(movieId=${movie.id})}" th:text="${movie.title}"></a>
             </h4>
-            
-
-
-
-
-
-
             
         </div>
       </div>

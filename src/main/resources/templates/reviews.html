@@ -28,14 +28,14 @@
         </div>
       </div>
       <div
-        style="background: #393931; position: relative; flex: 1;"
-        class="col col-sm-7 col-md-8 col-lg-9"
+        class="col col-sm-7 col-md-8 col-lg-9 dashboare_main_container_wrapper"
       >
-        <div class="container-fluid">
-          <p>Numbers of reviews: <span th:text="${#lists.size(user.views)}"/></p>
+        <div class="container-fluid" >
 
-          <div th:each="view : ${user.views}" th:if="${view.review != ''}">
-            
+          <div th:each="view : ${user.views}" th:if="${view.review != ''}" class="user-review-wrapper">
+            <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;position: absolute; bottom: -50px; left: 50ps;">
+              <img th:src="@{${'https://image.tmdb.org/t/p/original' + view.movie.posterUrl}}"  style="width: 100%;"/>
+            </div>
             <h2 th:text="${view.movie.title}" />
             <p th:text="${view.review}" />
             

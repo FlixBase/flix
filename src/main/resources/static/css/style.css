@@ -316,3 +316,41 @@
   .ratingControl-stars--5 {
     left: 160px;
   }
+
+  .dashboare_main_container_wrapper {
+    background: #393931;
+    position: relative;
+    flex: 1;
+    padding: 50px;
+  }
+  .user-review-wrapper {
+    background-color: white; 
+    border-radius:10px; 
+    position: relative;
+    padding:50px;
+    margin: 25px 0;
+    width: 70%;
+
+  }
+  .user-review-wrapper:nth-child(even) {
+    float:right;
+  }
+
+  .user-review-movie-wrapper {
+    width: 100px; 
+    height: 100px; 
+    overflow: hidden; 
+    border-radius: 50%;
+    position: absolute; 
+    bottom: -50px; 
+  }
+
+  .user-review-movie-wrapper:nth-child(odd) {
+    left: 50px;
+  }
+  .user-review-movie-wrapper:nth-child(odd) {
+    right: 50px;
+  }
+
+
+
