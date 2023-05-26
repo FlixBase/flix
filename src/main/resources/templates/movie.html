@@ -121,7 +121,9 @@
                   </div>
                 </div>
                 <div class="form-group d-flex justify-content-between">
-                  <button class="btn btn-primary" type="submit">Save</button>
+                   <button th:if="*{review == null || review == ''}" class="btn btn-primary" type="submit">Save</button>
+                   <button th:unless="*{review == null || review == ''}" class="btn btn-primary" type="submit">Update</button>
+
                  </div>
               </div>
               

@@ -23,7 +23,7 @@
             th:fragment="dashboard_nav(active)"
             class="d-flex flex-column align-items-center" style="flex:1;"
           >
-            <div class="dashboard_logo">Flix</div>
+            <div class="dashboard_logo"><a th:href="@{/movies/getTopRatedByUserGenres(genresNumber=${5}, moviesPerGenre=${5})}">Flix</a></div>
 
             <ul class="dash_nav_inner_container">
               <li class="dash_nav_item">
