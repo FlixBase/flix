@@ -409,6 +409,11 @@ border-color: cornflowerblue;
     box-shadow: 0 0 15px #00000060;
   }
 
+  .dashboard_main_user_stat_card {
+    background-color: floralwhite;
+    min-width: 90%;
+  }
+  
   .dashboard_main_user_stat_icon_wrapper {
     top: -10px;
     left: 10px;
@@ -433,5 +438,6 @@ border-color: cornflowerblue;
     20px;
     text-align: right;
   }
+
 
 
