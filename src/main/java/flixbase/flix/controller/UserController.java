@@ -1,7 +1,11 @@
 package flixbase.flix.controller;
 
+import java.rmi.StubNotFoundException;
 import java.security.Principal;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -13,9 +17,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import flixbase.flix.dto.GenreDto;
 import flixbase.flix.dto.UserDto;
+import flixbase.flix.dto.ViewDto;
 import flixbase.flix.service.GenreService;
 import flixbase.flix.service.UserService;
 
@@ -49,18 +55,23 @@ public class UserController {
         UserDto loggedInUser = getPrincipal(principal);
         if (loggedInUser.getId() == userDto.getId()) {
             UserDto updatedUserDto = userService.update(userDto);
-            model.addAttribute("user", updatedUserDto);
         }
         else {
             throw new AccessDeniedException("User is not authorized to perform this operation");
         }
-        return "redirect:/user/profile";
+        return "redirect:/user/profile?updated=true";
     }
 
     @GetMapping("/profile")
-    public String userProfile(Model model, Principal principal) {
+    public String userProfile(Model model, Principal principal, @RequestParam(name="updated", required=false) String updateStat) {
         UserDto loggedInUser = getPrincipal(principal);
         List<GenreDto> genres = genreService.getGenres();
+        Calendar today = Calendar.getInstance();
+        model.addAttribute("greeting", today.get(Calendar.AM_PM) == 0? "Good Morning!" : "Good Afternoon!");
+        if(updateStat != null) {
+            model.addAttribute("message", "Your favorite genres have been saved.");
+        }
+  
         model.addAttribute("user", loggedInUser);
         model.addAttribute("genres", genres);
         return "user_profile";
