@@ -1,5 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Grand+Hotel&family=Hammersmith+One&display=swap');
 
+.btn-primary {
+  background-color: royalblue;
+  border-color: royalblue;
+}
+.btn-primary:hover {
+  background-color: #2d56cf;
+  border-color: #2d56cf;
+}
+.btn-success {
+  background-color: cadetblue;
+  border-color: cadetblue;
+}
+
+.btn-success:hover {
+  background-color: rgb(68, 139, 142);
+  border-color: rgb(68, 139, 142);
+}
+
+.form-switch .form-check-input {
+  width: 3rem;
+}
+
+.form-check-input:checked {
+  background-color: cornflowerblue;
+border-color: cornflowerblue;
+}
+
+.form-check-input {
+  height: 1.5rem;
+}
+
 .home_container {
     min-height: 100vh;
     background-image: url("/img/movie_posters1_red.jpg");

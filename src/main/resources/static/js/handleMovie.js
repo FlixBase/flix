@@ -77,3 +77,4 @@ window.onload = function() {
         document.getElementById(viewId + "_rating-" + userRating).classList.add("active");
     })
 }
+
