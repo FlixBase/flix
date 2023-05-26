@@ -74,7 +74,7 @@
               <p th:text="${movie.description}" style="color: #eee;font-weight: 200;" />
             </div>
             <div style="margin: 20px 50px;padding: 30px 40px;background-color: #393939;border-radius: 10px;">
-              <p th:text="${message}" />
+              <p th:if="${message}" th:text="${message}" style="color:white;"/>
               <form
               method="post"
               role="form"
@@ -94,7 +94,7 @@
 
               
           
-              <div class="form-group mb-3">
+              <div class="form-group mb-3 d-flex justify-content-between">
                 <!-- <label class="form-label">Review</label> -->
                 <textarea
                   class="form-control"
@@ -103,7 +103,10 @@
                   placeholder="Enter review"
                   rows="4"
                   th:field="*{review}"
-                ></textarea>
+                  style="width:calc(100% - 60px);"
+                ></textarea>                   
+                <button th:if="*{id != null && review != null && review != ''}" th:formaction="'/view/deleteReview'" class="btn btn-outline-danger" type="submit" style="width: 40px; height: 40px;">X</button>
+
               </div>
               <div class="d-flex justify-content-between">
                 <div class="rating_stars_wrapper" id="myMovieRating" th:attr="data-userRating=*{rating}" style="margin:0;">
@@ -121,9 +124,8 @@
                   </div>
                 </div>
                 <div class="form-group d-flex justify-content-between">
-                   <button th:if="*{review == null || review == ''}" class="btn btn-primary" type="submit">Save</button>
-                   <button th:unless="*{review == null || review == ''}" class="btn btn-primary" type="submit">Update</button>
-
+                   <button th:if="*{review == null || review == ''}" class="btn btn-primary" type="submit" style="margin-right: 60px;">Save</button>
+                   <button th:unless="*{review == null || review == ''}" class="btn btn-primary" type="submit" style="margin-right: 60px;">Update</button>
                  </div>
               </div>
               
