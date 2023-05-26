@@ -184,7 +184,10 @@ public class MovieController {
     @GetMapping({"/getRecomended"})
     public String getRecomended(@RequestParam("size") int size, Model model, Principal principal) {
         UserDto userDto = getLoggedInUser(principal);
-        List<MovieDto> movies = movieService.getRecomended(userDto.getFavoriteGenres(), size, userDto.getViews());
+        List<MovieDto> movies = null;
+        if (userDto.getFavoriteGenres().size() > 0){
+            movies = movieService.getRecomended(userDto.getFavoriteGenres(), size, userDto.getViews());
+        }
         model.addAttribute("user", userDto);
         model.addAttribute("movies", movies);
         return "recommendation";
