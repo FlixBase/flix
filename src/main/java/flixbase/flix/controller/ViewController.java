@@ -89,6 +89,30 @@ public class ViewController {
         return "redirect:/movies/getMovieById";
     }
 
+    @PostMapping("/deleteReview")
+    public String deleteReview(@ModelAttribute("view") ViewDto viewDto, Principal principal, Model model, RedirectAttributes redirectAttributes) {
+        UserDto user = getPrincipal(principal);
+        if(viewDto.getUserId() != user.getId()) viewDto.setUserId(user.getId());
+        viewDto.setRating(0);
+        viewDto.setReview("");
+        ViewDto dbView = viewService.save(viewDto);
+        
+        if(dbView == null) {
+            model.addAttribute("message", "Something went wrong. User Review / Rating not deleted.");
+            model.addAttribute("view", viewDto);
+            return "redirect:/movies/getMovieById";
+        }
+
+        model.addAttribute("user", user);
+        redirectAttributes.addAttribute("movieId", viewDto.getMovieId());
+
+        model.addAttribute("message", "Success! Your review / rating has been deleted.");
+        model.addAttribute("view", dbView);
+
+        return "redirect:/movies/getMovieById";
+    }
+
+
     @GetMapping("/userReviews")
     public String getUserReviews(Model model, Principal principal) {
         UserDto user = getPrincipal(principal);
