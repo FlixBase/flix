@@ -37,7 +37,7 @@ public class UserController {
         UserDto loggedInUser = getPrincipal(principal);
         System.out.println(loggedInUser.getUsername());
         model.addAttribute("user", loggedInUser);
-        return "user";
+        return "redirect:/movies/getTopRatedByUserGenres?genresNumber=5&moviesPerGenre=5";
     }
 
     private UserDto getPrincipal(Principal principal) {

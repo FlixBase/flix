@@ -378,5 +378,29 @@
     box-shadow: 0 0 15px #00000060;
   }
 
+  .dashboard_main_user_stat_icon_wrapper {
+    top: -10px;
+    left: 10px;
+    width: 60px;
+    height: 55px;
+    border-radius: 7px;
+    box-shadow: 0 0 10px #00000030;
+  }
+
+  .dashboard_main_user_stat_number {
+    font-size:4rem;
+    font-weight:900;
+    text-align: right;
+    line-height: 0.8;
+    padding-top: 10px;
+    padding-right: 15px;
+  }
+
+  .dashboard_main_user_stat_text {
+    margin:0;
+    margin-top: 
+    20px;
+    text-align: right;
+  }
 
 

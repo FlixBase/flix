@@ -41,7 +41,7 @@ public class AuthController {
     @GetMapping("/login")
     public String login(Principal principal) {
         if(principal != null) {
-            return "redirect:/user";
+            return "redirect:/movies/getTopRatedByUserGenres?genresNumber=5&moviesPerGenre=5";
         }
         return "login";
     }

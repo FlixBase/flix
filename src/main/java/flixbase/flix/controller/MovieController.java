@@ -2,6 +2,7 @@ package flixbase.flix.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -139,8 +140,18 @@ public class MovieController {
                 }
             }
         }
+        HashMap<String, Integer> userStat = new HashMap<>();
+        userStat.put("favorites", 0);
+        userStat.put("ratings", 0);
+        userStat.put("reviews", 0);
+        for(ViewDto viewDto : getLoggedInUser(principal).getViews()) {
+            if(viewDto.getFavorite() != null && viewDto.getFavorite()) userStat.put("favorites", userStat.get("favorites") + 1);
+            if(viewDto.getRating() != null && viewDto.getRating() != 0) userStat.put("ratings", userStat.get("ratings") + 1);
+            if(viewDto.getReview() != null && viewDto.getReview().length() > 0) userStat.put("reviews", userStat.get("reviews") + 1);
+        }
         model.addAttribute("user", getLoggedInUser(principal));
         model.addAttribute("genresMovies", genresMovies);
+        model.addAttribute("userStat", userStat);
         return "user";
     }
 
