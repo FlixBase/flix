@@ -43,7 +43,7 @@
                     My Favorite Genres 
                 </label>
                     <div class="d-flex flex-wrap">
-                        <div th:each="genre : ${genres}" class="col-sm-6 col-md-4 m-2">
+                        <div th:each="genre : ${genres}" class="col-sm-6 col-md-4 m-2 form-check form-switch">
                             <input 
                                 th:text="${genre.name}"
                                 th:value="${genre.id}"

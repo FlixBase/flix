@@ -18,6 +18,19 @@
   border-color: rgb(68, 139, 142);
 }
 
+.form-switch .form-check-input {
+  width: 3rem;
+}
+
+.form-check-input:checked {
+  background-color: cornflowerblue;
+border-color: cornflowerblue;
+}
+
+.form-check-input {
+  height: 1.5rem;
+}
+
 .home_container {
     min-height: 100vh;
     background-image: url("/img/movie_posters1_red.jpg");
