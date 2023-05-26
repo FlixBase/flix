@@ -80,7 +80,7 @@ public class MovieServiceImpl implements MovieService {
         for (MovieDto movieDto : movieDtos) {
             boolean isFavorite = viewDtos.stream()
                 .filter(viewDto -> viewDto.getMovie().getId().equals(movieDto.getId()))
-                .anyMatch(viewDto -> viewDto.getFavorite());
+                .anyMatch(viewDto -> viewDto.getFavorite() != null && viewDto.getFavorite());
 
             movieDto.setFavorite(isFavorite);
         }
