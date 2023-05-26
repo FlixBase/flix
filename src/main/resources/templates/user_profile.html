@@ -28,22 +28,54 @@
         </div>
       </div>
       <div
-        class="col col-sm-7 col-md-8 col-lg-9 dashboare_main_container_wrapper"
+        class="col col-sm-7 col-md-8 col-lg-9 d-flex flex-column justify-content-center dashboare_main_container_wrapper" style="padding: 0;"
       >
-      <div class="container-fluid" style="background-color: floralwhite; width: 80%; padding: 50px; margin-top: 50px;">
+      <div class="user_profile_banner">
+        <div class="user_icon_name_wrapper">
+          <div class="d-flex justify-content-center align-items-center user_icon">
+          <h1
+            th:if="${user}"
+            th:text="${#strings.substring(user.username, 0, 1)}"
+          />
+          </div>
+          <div style="margin-left: 15px;">
+              <p th:text="${greeting}" style="color:white;margin:0;font-weight:200;"/>
+              <h2 th:text="${user.username}" style="color:white;margin-bottom: 20px;text-transform:uppercase;"/>
+          </div>
+        </div>
+      </div>
 
+      <div class="container-fluid" style="width: 80%; margin: 100px 10%;">
+        <div class="py-4">
+           <div class="d-flex m-1">
+              <div class="d-flex justify-content-center align-items-center" style="width:30px;">
+                <svg fill="#ffffff70" width="20px" height="20px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>user</title> <path d="M4 28q0 0.832 0.576 1.44t1.44 0.576h20q0.8 0 1.408-0.576t0.576-1.44q0-1.44-0.672-2.912t-1.76-2.624-2.496-2.144-2.88-1.504q1.76-1.088 2.784-2.912t1.024-3.904v-1.984q0-3.328-2.336-5.664t-5.664-2.336-5.664 2.336-2.336 5.664v1.984q0 2.112 1.024 3.904t2.784 2.912q-1.504 0.544-2.88 1.504t-2.496 2.144-1.76 2.624-0.672 2.912z"></path> </g></svg>
+              </div>
+              <p th:text="${user.username}" style="color:white;margin: 0 0 0 15px; font-size:0.9rem; font-weight:200;" />
+            </div>
+            <div class="d-flex m-1">
+              <div class="d-flex justify-content-center align-items-center" style="width:30px;">
+                <svg height="18px" width="18px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#ffffff70"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <path style="fill:#ffffff70;" d="M2.265,177.641c-3.432,12.724-1.969,243.96-1.877,245.203l156.856-143.769L2.265,177.641z"></path> <path style="fill:#ffffff70;" d="M255.981,330.909c-23.957,0-35.211-10.256-66.562-30.775L16.151,458.946 c10.883,11.711,26.403,19.058,43.614,19.058h392.432c17.211,0,32.731-7.346,43.614-19.058L322.542,300.134 C291.192,320.653,279.937,330.909,255.981,330.909z"></path> <path style="fill:#ffffff70;" d="M509.696,177.641L354.718,279.075l156.855,143.769 C511.665,421.592,513.239,190.772,509.696,177.641z"></path> <path style="fill:#ffffff70;" d="M287.776,278.746c0.594-0.389,201.421-132.227,201.421-132.227 c-18.827-14.975-35.861-12.94-56.849-12.94h-18.633v-80.95c0-10.29-8.343-18.633-18.633-18.633H116.88 c-10.29,0-18.633,8.343-18.633,18.633v80.95h-0.001H79.613c-20.766,0-37.877-2.15-56.849,12.94 c0,0,200.835,131.843,201.425,132.229C253.688,298.052,255.684,299.746,287.776,278.746z M198.45,75.336h115.061 c10.29,0,18.633,8.343,18.633,18.633s-8.343,18.633-18.633,18.633H198.45c-10.29,0-18.633-8.343-18.633-18.633 S188.16,75.336,198.45,75.336z M154.973,159.843c0-10.29,8.343-18.633,18.633-18.633h164.749c10.29,0,18.633,8.343,18.633,18.633 s-8.343,18.633-18.633,18.633H173.606C163.316,178.476,154.973,170.133,154.973,159.843z"></path> </g> </g> </g> </g></svg>             
+              </div>
+              <p th:text="${user.email}" style="color:white;margin: 0 0 0 15px;font-size:0.9rem; font-weight:200;" />
+            </div>
+        </div>
+           
             <form 
                 th:action="@{/user/save}"
                 th:object="${user}"
                 method="post"
+                style="padding:50px;background-color: floralwhite; border-radius: 15px;"
                 >
                 <input type="hidden" th:field="*{id}" />
                 <input type="hidden" th:field="*{username}" />
-                <label>
+                <label style="margin-bottom: 40px;font-size: 1.5rem;font-weight: 500;color: #333;">
                     My Favorite Genres 
+                    <p th:if="${message}" th:text="${message}" style="font-size:1rem;margin:0;color:green;"/>
                 </label>
+                
                     <div class="d-flex flex-wrap">
-                        <div th:each="genre : ${genres}" class="col-sm-6 col-md-4 m-2 form-check form-switch">
+                        <div th:each="genre : ${genres}" class="col-sm-6 col-md-4 mb-3 form-check form-switch">
                             <input 
                                 th:text="${genre.name}"
                                 th:value="${genre.id}"
@@ -59,7 +91,8 @@
                
 
                 <div class="form-group mt-4 mb-2 d-flex justify-content-between">
-                    <button class="btn btn-primary" type="submit">Save</button>
+                  <button th:if="${#lists.size(user.genreIds) == 0}" class="btn btn-primary" type="submit">Save</button>
+                  <button th:unless="${#lists.size(user.genreIds) == 0}" class="btn btn-primary" type="submit">Update</button>
 
                 </div>
             </form>

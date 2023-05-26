@@ -154,7 +154,7 @@
           
           </div>  
           <div class="row" style="padding: 55px;">
-            <div class="col col-sm-9">
+            <div class="col col-sm-8">
               <div th:each="review : ${reviews}" th:if="${review.userId != user.id && review.review != null && review.review != ''} " style="margin-bottom: 50px;padding: 40px;background-color: #6a6a6a; color: white; border-radius: 10px;position:relative;">
                   <div class="d-flex justify-content-center align-items-center" style="width: 50px; height: 50px; position:absolute; left: 50px; bottom: -25px; border-radius: 50%; background: cornflowerblue;">
                     <h3 th:text="${#strings.substring(review.username, 0, 1)}" style="font-weight: 900; text-transform:uppercase;color:white;margin:0;padding:0;"/>
@@ -171,13 +171,20 @@
               </div> 
 
             </div>
-            <div class="col col-sm-3" style="padding-left:30px;">
-              <h4 style="color:white;">Also check out these movies</h4>
-              <div th:each="otherMovie : ${otherMovies}" th:if="${otherMovie.id != movie.id}" class="p-2 w-100">
-                <a th:href="@{/movies/getMovieById(movieId=${otherMovie.id})}" class="d-flex h-100">
-                  <img th:src="@{${'https://image.tmdb.org/t/p/original' + otherMovie.posterUrl}}" class="movies_movie_poster"/>
-                </a>
+            <div class="col col-sm-4" style="padding-left:30px;">
+              <div class="w-100 mb-5" style="border-radius: 12px; overflow: hidden;">
+                <img src="/img/word_cloud/reviews_tt666_word_cloud.jpeg" class="w-100" />
               </div>
+              
+              <div class="row">
+                <h6 style="color:white;">Also check out these movies</h6>
+                <div th:each="otherMovie : ${otherMovies}" th:if="${otherMovie.id != movie.id}" class="col col-6 my-2">
+                  <a th:href="@{/movies/getMovieById(movieId=${otherMovie.id})}" class="d-flex h-100">
+                    <img th:src="@{${'https://image.tmdb.org/t/p/original' + otherMovie.posterUrl}}" class="movies_movie_poster"/>
+                  </a>
+                </div>
+              </div>
+              
             </div>
           </div>
         </div>
