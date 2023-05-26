@@ -23,5 +23,10 @@ public interface MovieRepository  extends JpaRepository<Movie, Integer> {
             AND m.id NOT IN :viewedMovieIds
             GROUP BY m ORDER BY COUNT(g) DESC, m.voteAverage DESC LIMIT :limit
         """)
-    List<Movie> getRecomended(@Param("favoriteGenreIds") List<Integer> favoriteGenreIds, @Param("limit") Integer limit,  @Param("viewedMovieIds") List<Integer> viewedMovieIds);
+    List<Movie> getRecomendedExcludeViewed(@Param("favoriteGenreIds") List<Integer> favoriteGenreIds, @Param("limit") Integer limit,  @Param("viewedMovieIds") List<Integer> viewedMovieIds);
+
+    @Query("""
+        SELECT m FROM Movie m JOIN m.genres g WHERE g.id IN :favoriteGenreIds GROUP BY m ORDER BY COUNT(g) DESC, m.voteAverage DESC LIMIT :limit
+        """)
+    List<Movie> getRecomended(@Param("favoriteGenreIds") List<Integer> favoriteGenreIds, @Param("limit") Integer limit);
 }

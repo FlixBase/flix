@@ -102,8 +102,14 @@ public class MovieServiceImpl implements MovieService {
                 .map(genre -> genre.getId()).collect(Collectors.toList());
         List<Integer> viewedMovieIds =  userViews.stream()
                 .map(view -> view.getMovieId()).collect(Collectors.toList());
-        List<Movie> movies = movieRepository.getRecomended(favoriteGenreIds, limit, viewedMovieIds);
-
+        List<Movie> movies = new ArrayList<>();
+        
+        if (viewedMovieIds.size() == 0) {
+            movies = movieRepository.getRecomended(favoriteGenreIds, limit);
+        }
+        else {
+            movies = movieRepository.getRecomendedExcludeViewed(favoriteGenreIds, limit, viewedMovieIds);
+        }
         return movies.stream()
             .map(movie -> new MovieDto(movie)).collect(Collectors.toList());
     }
