@@ -57,7 +57,7 @@
                   <button th:each="genre : ${movie.genres}" th:text="${genre.name}" class="btn btn-light" style="margin: 10px 5px 5px;cursor: default;"/>
                   <br />
 
-                  <button th:if="${userReview?.favorite}" id="saveToFav" class="btn btn-secondary" style="margin: 10px 5px 5px;"  th:attr="data-viewid=${userReview.id}, data-movieid=${movie.id}, data-userid=${user.id}">
+                  <button th:if="${userReview?.favorite}" id="saveToFav" class="btn btn-success" style="margin: 10px 5px 5px;"  th:attr="data-viewid=${userReview.id}, data-movieid=${movie.id}, data-userid=${user.id}">
                     <svg aria-label="MyFav" style="margin-right: 5px;" color="rgb(255, 48, 64)" fill="rgb(255, 48, 64)" height="20" role="img" viewBox="0 0 48 48" width="24"><title>Unsave</title><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
                     My Favorite
                   </button>
@@ -97,15 +97,36 @@
               <div class="form-group mb-3 d-flex justify-content-between">
                 <!-- <label class="form-label">Review</label> -->
                 <textarea
+                  th:if="*{id != null && review != null && review != ''}"
                   class="form-control"
                   id="review"
                   name="review"
                   placeholder="Enter review"
                   rows="4"
                   th:field="*{review}"
-                  style="width:calc(100% - 60px);"
-                ></textarea>                   
-                <button th:if="*{id != null && review != null && review != ''}" th:formaction="'/view/deleteReview'" class="btn btn-outline-danger" type="submit" style="width: 40px; height: 40px;">X</button>
+                  style="width:calc(100% - 60px);background-color: ghostwhite;"
+                ></textarea>  
+                <textarea
+                  th:unless="*{id != null && review != null && review != ''}"
+                  class="form-control"
+                  id="review"
+                  name="review"
+                  placeholder="Enter review"
+                  rows="4"
+                  th:field="*{review}"
+                  style="background-color: ghostwhite;"
+                ></textarea>  
+
+                <button 
+                  th:if="*{id != null && review != null && review != ''}" 
+                  th:formaction="'/view/deleteReview'" 
+                  class="btn btn-outline-danger" 
+                  type="submit" 
+                  data-toggle="tooltip" 
+                  title="Delete review"
+                  style="width: 40px; height: 40px;">
+                    X
+                </button>
 
               </div>
               <div class="d-flex justify-content-between">
@@ -124,7 +145,7 @@
                   </div>
                 </div>
                 <div class="form-group d-flex justify-content-between">
-                   <button th:if="*{review == null || review == ''}" class="btn btn-primary" type="submit" style="margin-right: 60px;">Save</button>
+                   <button th:if="*{review == null || review == ''}" class="btn btn-primary" type="submit" >Save</button>
                    <button th:unless="*{review == null || review == ''}" class="btn btn-primary" type="submit" style="margin-right: 60px;">Update</button>
                  </div>
               </div>
@@ -163,6 +184,5 @@
       </div>
     </div>
     <script src="/js/handleMovie.js" type="application/javascript"></script>
-
   </body>
 </html>
