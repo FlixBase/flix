@@ -173,7 +173,7 @@
             </div>
             <div class="col col-sm-4" style="padding-left:30px;">
               <div class="w-100 mb-5" style="border-radius: 12px; overflow: hidden;">
-                <img src="/img/word_cloud/reviews_tt666_word_cloud.jpeg" class="w-100" />
+                <img th:src="@{${'/img/word_cloud/' + movie.csvId + '.jpg'}}"  class="w-100"/>
               </div>
               
               <div class="row">
