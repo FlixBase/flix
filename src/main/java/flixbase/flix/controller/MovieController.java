@@ -3,7 +3,9 @@ package flixbase.flix.controller;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -116,7 +118,7 @@ public class MovieController {
             Model model, 
             Principal principal) {
                 
-        Hashtable <String, List<MovieDto>> genresMovies = new Hashtable<>(); 
+        Map<String, List<MovieDto>> genresMovies = new LinkedHashMap<>(); 
         UserDto userDto = getLoggedInUser(principal);
         List<GenreDto> userGenreDtos = userDto.getFavoriteGenres();
 
