@@ -469,3 +469,7 @@ img.movies_movie_poster {
 .user_profile_banner .user_icon h1 {
   font-size: 4rem;
 }
+
+.delete_button > svg:hover {
+  fill: red;
+}
