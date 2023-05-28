@@ -1,11 +1,8 @@
 package flixbase.flix.controller;
 
-import java.rmi.StubNotFoundException;
 import java.security.Principal;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import flixbase.flix.dto.GenreDto;
 import flixbase.flix.dto.UserDto;
-import flixbase.flix.dto.ViewDto;
 import flixbase.flix.service.GenreService;
 import flixbase.flix.service.UserService;
 
@@ -54,7 +50,7 @@ public class UserController {
     public String save(@Validated @ModelAttribute("user") UserDto userDto, BindingResult result, Model model, Principal principal) {
         UserDto loggedInUser = getPrincipal(principal);
         if (loggedInUser.getId() == userDto.getId()) {
-            UserDto updatedUserDto = userService.update(userDto);
+            userService.update(userDto);
         }
         else {
             throw new AccessDeniedException("User is not authorized to perform this operation");
