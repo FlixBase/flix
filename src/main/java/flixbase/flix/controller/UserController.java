@@ -49,7 +49,7 @@ public class UserController {
     @PostMapping("/save")
     public String save(@Validated @ModelAttribute("user") UserDto userDto, BindingResult result, Model model, Principal principal) {
         UserDto loggedInUser = getPrincipal(principal);
-        if (loggedInUser.getId() == userDto.getId()) {
+        if (loggedInUser.getId().equals(userDto.getId())) {
             userService.update(userDto);
         }
         else {
